@@ -1,0 +1,39 @@
+/* Hallmark · pre-emit critique: P5 H4 E4 S5 R5 V4 */
+:root {
+  --color-paper: oklch(97% 0.018 86);
+  --color-paper-2: oklch(94% 0.021 86);
+  --color-paper-3: oklch(90% 0.024 86);
+  --color-ink: oklch(22% 0.022 251);
+  --color-ink-soft: oklch(39% 0.020 251);
+  --color-rule: oklch(79% 0.018 86);
+  --color-accent: oklch(46% 0.115 245);
+  --color-accent-soft: oklch(89% 0.035 245);
+
+  --font-display: 'Fraunces Variable', Georgia, serif;
+  --font-body: 'DM Sans Variable', Arial, sans-serif;
+
+  --space-2xs: 0.25rem;
+  --space-xs: 0.5rem;
+  --space-sm: 0.75rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2rem;
+  --space-2xl: 3rem;
+  --space-3xl: 4rem;
+  --space-4xl: 6rem;
+  --space-gutter: clamp(1.125rem, 4.4vw, 4.75rem);
+
+  --text-xs: 0.72rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.25rem;
+  --text-xl: 1.5rem;
+  --text-2xl: 2rem;
+
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --dur-micro: 120ms;
+  --dur-short: 220ms;
+  --dur-long: 500ms;
+  --rule-hair: 1px;
+  --radius-none: 0;
+}
