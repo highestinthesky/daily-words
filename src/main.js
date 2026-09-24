@@ -1,6 +1,7 @@
 import '@fontsource-variable/fraunces/wght.css';
 import '@fontsource-variable/dm-sans/wght.css';
-import { animate, stagger } from 'animejs';
+import { waapi } from 'animejs/waapi';
+import { stagger } from 'animejs/utils';
 import { getDailyEdition, getEditorialDate } from './daily.js';
 import { WORDS } from './words.js';
 import './style.css';
@@ -8,6 +9,7 @@ import './style.css';
 const editionRoot = document.querySelector('#edition');
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 let currentDateKey = '';
+let hasRendered = false;
 
 function make(tag, className, text) {
   const element = document.createElement(tag);
@@ -61,18 +63,38 @@ function renderEdition(dateKey) {
   currentDateKey = dateKey;
 
   if (!reducedMotion.matches) {
-    const targets = [
-      document.querySelector('.masthead__brand'),
-      ...editionRoot.querySelectorAll('.lead-word__left, .lead-word__right, .word-card'),
-    ];
-    animate(targets, {
+    if (!hasRendered) {
+      waapi.animate('.masthead__brand', {
+        opacity: [0, 1],
+        y: [8, 0],
+        duration: 520,
+        ease: 'out(3)',
+      });
+    }
+
+    waapi.animate(editionRoot.querySelector('.lead-word__term'), {
       opacity: [0, 1],
-      y: [14, 0],
-      delay: stagger(65),
-      duration: 620,
-      ease: 'outExpo',
+      y: [28, 0],
+      duration: 780,
+      ease: 'out(4)',
+    });
+    waapi.animate(editionRoot.querySelectorAll('.lead-word__part, .lead-word__right'), {
+      opacity: [0, 1],
+      y: [12, 0],
+      delay: stagger(90, { start: 170 }),
+      duration: 650,
+      ease: 'out(3)',
+    });
+    waapi.animate(editionRoot.querySelectorAll('.word-card'), {
+      opacity: [0, 1],
+      y: [18, 0],
+      delay: stagger(85, { start: 320 }),
+      duration: 650,
+      ease: 'out(3)',
     });
   }
+
+  hasRendered = true;
 }
 
 function updateIfNeeded() {

@@ -17,6 +17,8 @@ The browser calculates the current calendar date in `America/New_York`, then sel
 
 The date follows the visitor's device clock. A device set to the wrong time can show the wrong edition until its clock is corrected.
 
+On each load, Anime.js reveals the lead word and then the supporting entries with a short, staggered motion. The site uses its small Web Animations module and shows everything immediately when reduced motion is preferred.
+
 ## Publish on GitHub Pages
 
 1. Create a GitHub repository and connect this folder as its `main` branch. Commit and push the project, including `package-lock.json` and `.github/workflows/pages.yml`.
