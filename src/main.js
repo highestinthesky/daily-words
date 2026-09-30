@@ -63,12 +63,14 @@ function renderEdition(dateKey) {
   currentDateKey = dateKey;
 
   if (!reducedMotion.matches) {
+    // Restore CSS after the reveal; Safari can commit offscreen opacity as zero.
     if (!hasRendered) {
       waapi.animate('.masthead__brand', {
         opacity: [0, 1],
         y: [8, 0],
         duration: 520,
         ease: 'out(3)',
+        onComplete: (animation) => animation.revert(),
       });
     }
 
@@ -77,6 +79,7 @@ function renderEdition(dateKey) {
       y: [28, 0],
       duration: 780,
       ease: 'out(4)',
+      onComplete: (animation) => animation.revert(),
     });
     waapi.animate(editionRoot.querySelectorAll('.lead-word__part, .lead-word__right'), {
       opacity: [0, 1],
@@ -84,6 +87,7 @@ function renderEdition(dateKey) {
       delay: stagger(90, { start: 170 }),
       duration: 650,
       ease: 'out(3)',
+      onComplete: (animation) => animation.revert(),
     });
     waapi.animate(editionRoot.querySelectorAll('.word-card'), {
       opacity: [0, 1],
@@ -91,6 +95,7 @@ function renderEdition(dateKey) {
       delay: stagger(85, { start: 320 }),
       duration: 650,
       ease: 'out(3)',
+      onComplete: (animation) => animation.revert(),
     });
   }
 

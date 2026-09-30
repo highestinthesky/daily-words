@@ -68,3 +68,6 @@ body { background: var(--color-paper); color: var(--color-ink); font-family: var
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { scroll-behavior: auto !important; animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
 }
+
+/* Reserve the review marker's own space when a heading wraps or text grows. */
+.word-card--review .word-card__term { padding-inline-end: var(--space-xl); }

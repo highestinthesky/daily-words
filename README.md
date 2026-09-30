@@ -11,6 +11,8 @@ npm run dev
 
 `npm test` checks the date and review rules plus the 324-entry active word bank. `npm run build` creates the deployable `dist/` folder.
 
+For browser regression checks, run `npx playwright install chromium webkit` once, then `npm run test:mobile`. These check that all five entries stay visible after the entrance animation and scrolling in Chromium and Safari's WebKit engine, at phone, tablet, and desktop widths. They also cover reduced motion, enlarged text, review-marker overlap, and a daily edition change.
+
 ## Daily selection
 
 The browser calculates the current calendar date in `America/New_York`, then selects the same five entries from the bundled bank for every visitor. It checks at each minute boundary and when the tab becomes active, so an open page changes at New York midnight. For the first seven days from September 23, 2026, all five words are new. Starting September 30, one entry per day revisits a new word from two to six days earlier. The first word is always new. New entries cycle through the full bank before repeating.
