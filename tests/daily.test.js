@@ -62,7 +62,8 @@ describe('daily word selection', () => {
   it('keeps real editions distinct and review words traceable across the first bank cycle', () => {
     const start = Date.parse('2026-09-23T00:00:00Z');
     const newlySeen = new Set();
-    for (let day = 0; day < 90; day += 1) {
+    const cycleDays = 7 + Math.ceil((WORDS.length - 35) / 4);
+    for (let day = 0; day < cycleDays; day += 1) {
       const dateKey = new Date(start + day * 86_400_000).toISOString().slice(0, 10);
       const edition = getDailyEdition(dateKey, WORDS);
       expect(new Set(edition.words.map(({ word }) => word)).size).toBe(5);

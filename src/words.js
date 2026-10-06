@@ -1,542 +1,680 @@
 // Each line: word | part of speech | plain-language meaning | everyday example.
+// The bank aims above everyday vocabulary: words a strong student may know by
+// sight but rarely uses. Namesakes (Freudian, quixotic) are left out on purpose.
 const rows = `
-astute|adj.|Quick to notice what matters and act wisely.|Her astute question exposed the flaw in our plan.
-candid|adj.|Open and honest, even when the truth is awkward.|He gave me a candid answer about the job.
-nuanced|adj.|Showing small but important differences.|The issue deserves a more nuanced conversation.
-pragmatic|adj.|Focused on what will work in practice.|We took a pragmatic approach and booked the earlier train.
-incisive|adj.|Clear and sharply focused on the heart of a matter.|Her incisive comment changed how I saw the proposal.
-cogent|adj.|Clear, logical, and convincing.|He made a cogent case for leaving on Friday.
-eloquent|adj.|Expressing an idea beautifully and effectively.|Her short toast was more eloquent than any long speech.
-succinct|adj.|Brief while still saying everything needed.|Could you give me a succinct summary before the meeting?
-discerning|adj.|Good at noticing quality or subtle differences.|A discerning reader will catch the joke in that title.
-judicious|adj.|Showing careful and sensible judgment.|A judicious pause kept the conversation friendly.
-adroit|adj.|Skillful in a clever or graceful way.|She made an adroit change of subject at dinner.
-meticulous|adj.|Very careful about small details.|His meticulous notes saved us an hour of guessing.
-deliberate|adj.|Done with thought and intention.|We made a deliberate choice to keep the weekend free.
-circumspect|adj.|Careful not to take unnecessary risks.|I would be circumspect about sharing that rumor.
-shrewd|adj.|Clever at judging people and situations.|Buying the tickets early was a shrewd move.
-prescient|adj.|Accurately sensing what is likely to happen.|Her prescient warning about traffic got us there on time.
-sagacious|adj.|Wise, especially from good judgment and experience.|My grandfather gave me sagacious advice about saving money.
-perceptive|adj.|Quick to understand what others miss.|That was a perceptive observation about her mood.
-lucid|adj.|Easy to understand because it is clearly expressed.|His lucid explanation made the rules finally click.
-trenchant|adj.|Sharp, effective, and often critical.|The review offered a trenchant take on the film.
-expressive|adj.|Showing thoughts or feelings clearly and vividly.|Her expressive face gave away the surprise.
-measured|adj.|Calm and carefully considered.|His measured response eased the tension.
-forthright|adj.|Direct and honest about what you think.|I appreciate a forthright answer, even if it is no.
-perspicacious|adj.|Very good at seeing what is really going on.|Her perspicacious reading of the room changed our plans.
-poignant|adj.|Moving because it feels sad or meaningful.|That old photograph was a poignant reminder of summer.
-resonant|adj.|Having an emotional meaning that stays with you.|Her story felt resonant long after dinner ended.
-evocative|adj.|Bringing strong images or feelings to mind.|The song is evocative of long car rides home.
-vivid|adj.|So clear and lively that it is easy to imagine.|She gave a vivid account of the storm.
-vibrant|adj.|Full of energy, life, or rich color.|The neighborhood feels vibrant on Saturday mornings.
-buoyant|adj.|Cheerful and able to recover from setbacks.|Despite the delay, he stayed buoyant all afternoon.
-effervescent|adj.|Lively and full of cheerful energy.|Her effervescent laugh lifted the whole table.
-amiable|adj.|Pleasant, friendly, and easy to be around.|Our new neighbor seems wonderfully amiable.
-affable|adj.|Friendly and comfortable to talk with.|The host was affable without being overfamiliar.
-genial|adj.|Warm, friendly, and cheerful.|We had a genial conversation on the walk back.
-gracious|adj.|Kind and polite, especially in a tense moment.|She was gracious about the last-minute change.
-cordial|adj.|Warm and politely friendly.|Their first meeting was brief but cordial.
-gregarious|adj.|Enjoying the company of other people.|My gregarious cousin knows everyone at the party.
-congenial|adj.|Pleasant because it suits your tastes or nature.|The quiet café was a congenial place to talk.
-companionable|adj.|Comfortably friendly without needing much talk.|We spent a companionable hour reading by the fire.
-solicitous|adj.|Showing thoughtful concern for someone.|He was solicitous when he heard I felt ill.
-empathetic|adj.|Able to understand another person's feelings.|Her empathetic reply made him feel heard.
-equanimous|adj.|Calm and steady even when things go wrong.|She remained equanimous through the travel chaos.
-unflappable|adj.|Staying calm under pressure.|Our unflappable guide found another route.
-steadfast|adj.|Loyal and firm through difficulty.|She has been a steadfast friend for years.
-resolute|adj.|Firmly decided and unlikely to give up.|He was resolute about finishing the project.
-tenacious|adj.|Holding on to a goal despite obstacles.|Her tenacious effort finally paid off.
-intrepid|adj.|Brave and ready for unfamiliar things.|Our intrepid friends tried the unmarked trail.
-audacious|adj.|Bold enough to take a surprising risk.|It was an audacious idea, but everyone loved it.
-dauntless|adj.|Not easily frightened or discouraged.|The dauntless team kept going in the rain.
-plucky|adj.|Brave and determined in a cheerful way.|Their plucky little dog led the hike.
-ingenious|adj.|Clever in an original and useful way.|That folding desk is an ingenious solution.
-resourceful|adj.|Good at finding ways around a problem.|She was resourceful when the power went out.
-enterprising|adj.|Ready to start useful new projects.|An enterprising neighbor organized the book swap.
-adaptable|adj.|Able to adjust easily when plans change.|Our adaptable group moved dinner indoors.
-versatile|adj.|Useful in many different situations.|This versatile jacket works in any season.
-nimble|adj.|Quick and light in movement or thought.|The team stayed nimble as the schedule changed.
-agile|adj.|Able to move or think quickly and easily.|He gave an agile reply to a difficult question.
-proficient|adj.|Skilled and capable at doing something.|She became proficient at making fresh pasta.
-adept|adj.|Highly skilled at a particular task.|He is adept at making newcomers feel welcome.
-accomplished|adj.|Very skilled from practice or experience.|She is an accomplished home cook.
-assiduous|adj.|Working with steady care and attention.|His assiduous practice made the song sound effortless.
-diligent|adj.|Careful and persistent in work.|The diligent volunteer checked every address.
-industrious|adj.|Hardworking and productive.|An industrious morning cleared my whole to-do list.
-scrupulous|adj.|Very careful to be fair or accurate.|She was scrupulous about giving everyone credit.
-conscientious|adj.|Taking responsibilities seriously and carefully.|Our conscientious friend always confirms the details.
-punctilious|adj.|Extremely attentive to rules or details.|He is punctilious about arriving on time.
-exacting|adj.|Demanding a high standard of care.|The recipe is exacting but worth the effort.
-fastidious|adj.|Very particular about quality or cleanliness.|She is fastidious about keeping the kitchen tidy.
-thorough|adj.|Complete and careful in every important detail.|We gave the apartment a thorough cleaning.
-methodical|adj.|Following an orderly, careful process.|His methodical search turned up the missing keys.
-systematic|adj.|Done according to a clear plan or method.|A systematic approach made the move less stressful.
-purposeful|adj.|Done with a clear reason or aim.|Her purposeful walk told me she knew the way.
-intentional|adj.|Chosen or done on purpose.|We made an intentional effort to see friends more often.
-considered|adj.|Thought through with care.|That was a considered response to a tricky question.
-temperate|adj.|Moderate and self-controlled.|He took a temperate view of the disagreement.
-moderate|adj.|Keeping away from extremes.|The hike was moderate enough for all of us.
-restrained|adj.|Controlled and not excessive.|The room's restrained colors felt restful.
-understated|adj.|Attractive or effective without drawing loud attention.|Her understated outfit suited the occasion.
-unassuming|adj.|Quietly modest, without trying to impress.|The unassuming restaurant served an excellent lunch.
-modest|adj.|Not boasting or seeking too much attention.|He was modest about his impressive result.
-demure|adj.|Quiet and reserved in manner.|She gave a demure smile at the compliment.
-reticent|adj.|Not eager to reveal thoughts or feelings.|He was reticent about his plans until they were certain.
-reserved|adj.|Quiet and slow to share personal feelings.|She seems reserved until you get to know her.
-discreet|adj.|Careful to avoid attracting attention or sharing secrets.|Thank you for being discreet about the surprise.
-tactful|adj.|Careful to avoid hurting someone's feelings.|That was a tactful way to give feedback.
-diplomatic|adj.|Skilled at handling sensitive situations.|She found a diplomatic answer everyone could accept.
-urbane|adj.|Polished and confident in social situations.|The urbane host made each guest feel at ease.
-polished|adj.|Refined and prepared in appearance or manner.|His polished introduction set a warm tone.
-debonair|adj.|Stylish, confident, and charming.|He looked debonair in his old navy coat.
-suave|adj.|Smoothly confident and charming.|His suave greeting made the awkward moment easier.
-elegant|adj.|Simple, graceful, and pleasing.|It was an elegant solution to a crowded layout.
-refined|adj.|Improved with care and good taste.|The revised menu feels more refined.
-impeccable|adj.|Without faults or mistakes.|Her timing was impeccable as always.
-immaculate|adj.|Perfectly clean or carefully arranged.|The little garden looked immaculate.
-pristine|adj.|Fresh, clean, and untouched.|We found the beach pristine at dawn.
-serene|adj.|Calm, peaceful, and untroubled.|The garden felt serene after the rain.
-tranquil|adj.|Quiet and free from disturbance.|The library was tranquil in the early morning.
-placid|adj.|Calm and not easily upset.|The lake looked placid despite the cloudy sky.
-halcyon|adj.|Peaceful and happy, especially in memory.|She still talks about those halcyon summer afternoons.
-idyllic|adj.|Peaceful and beautiful in a nearly perfect way.|The cabin made for an idyllic weekend.
-pastoral|adj.|Relating to the quiet beauty of the countryside.|We took a pastoral route through the hills.
-bucolic|adj.|Pleasantly rural and peaceful.|The bucolic view made us linger over coffee.
-verdant|adj.|Green with healthy plants and grass.|The trail was especially verdant in May.
-lush|adj.|Growing thickly and richly.|The courtyard was lush with herbs and vines.
-aromatic|adj.|Having a noticeable, pleasant smell.|The aromatic bread drew us into the bakery.
-fragrant|adj.|Having a sweet or pleasant smell.|The fragrant flowers filled the room.
-ambrosial|adj.|Deliciously pleasing to taste or smell.|That peach tart was absolutely ambrosial.
-delectable|adj.|Very enjoyable to eat.|The delectable pastry disappeared in minutes.
-sumptuous|adj.|Rich, splendid, and luxurious.|They served a sumptuous dinner by candlelight.
-opulent|adj.|Rich and lavish in appearance.|The theater's opulent ceiling caught our attention.
-lavish|adj.|Generously abundant or elaborate.|She made a lavish breakfast for everyone.
-plentiful|adj.|Available in a large amount.|Fresh berries were plentiful at the market.
-abundant|adj.|Existing in more than enough quantity.|The park has abundant shade in summer.
-ample|adj.|More than enough for what is needed.|We had ample time to catch the train.
-copious|adj.|Present in a large amount.|He took copious notes during the workshop.
-profuse|adj.|Produced or given in great quantity.|She offered profuse thanks after the meal.
-prolific|adj.|Producing a lot of work or results.|The prolific writer published another essay this week.
-fertile|adj.|Rich in ideas or able to support growth.|The discussion proved fertile ground for new plans.
-fruitful|adj.|Producing useful or successful results.|Our short meeting turned into a fruitful collaboration.
-auspicious|adj.|Suggesting a good beginning or future.|Clear skies made an auspicious start to the trip.
-promising|adj.|Likely to turn out well.|Their first rehearsal sounded promising.
-propitious|adj.|Favorable for a particular plan.|The weather looked propitious for a picnic.
-fortuitous|adj.|Happening by lucky chance.|Our fortuitous meeting led to a long friendship.
-serendipitous|adj.|Happening by a happy accident.|Finding that café was a serendipitous detour.
-providential|adj.|Arriving at just the right moment by chance.|Her providential call came as I needed advice.
-opportune|adj.|Well timed for a particular purpose.|The invitation came at an opportune moment.
-timely|adj.|Happening at a useful or suitable time.|Your timely reminder saved me from being late.
-apt|adj.|Especially suitable or fitting.|That was an apt name for the new puppy.
-apposite|adj.|Highly relevant or suitable to the moment.|Her apposite story helped explain the problem.
-pertinent|adj.|Directly related to the matter at hand.|Please keep the questions pertinent to the decision.
-germane|adj.|Relevant to what is being discussed.|His example was germane to our debate.
-salient|adj.|Most noticeable or important.|The salient point is that everyone agreed.
-pivotal|adj.|Crucial to what happens next.|That conversation was pivotal for their friendship.
-consequential|adj.|Having important effects or results.|It felt like a consequential decision at the time.
-momentous|adj.|Very important or significant.|Moving away felt momentous for the whole family.
-profound|adj.|Deep or far-reaching in meaning or effect.|The book had a profound effect on her.
-substantive|adj.|Having real importance or meaningful content.|We finally had a substantive talk about the budget.
-weighty|adj.|Serious and important.|It was a weighty question for a casual lunch.
-formidable|adj.|Impressive or difficult to overcome.|The hill looked formidable from the trailhead.
-daunting|adj.|Seeming difficult or intimidating.|The long reading list looked daunting at first.
-arduous|adj.|Demanding a lot of effort.|The climb was arduous but the view was worth it.
-onerous|adj.|Taking too much effort or responsibility.|The extra paperwork felt onerous.
-laborious|adj.|Requiring slow and tiring effort.|Sorting those old photos was laborious work.
-exhaustive|adj.|Very thorough and complete.|Her exhaustive list covered every option.
-comprehensive|adj.|Including nearly everything relevant.|The guide gives a comprehensive view of the city.
-expansive|adj.|Wide-ranging and open in scope or feeling.|We had an expansive conversation over lunch.
-far-reaching|adj.|Having effects that extend widely.|That small policy change had far-reaching effects.
-ambitious|adj.|Aiming for a high or difficult goal.|Their ambitious dinner plan involved five courses.
-aspirational|adj.|Expressing a hope for a better future.|The new schedule feels aspirational but achievable.
-visionary|adj.|Having unusually imaginative ideas about the future.|Her visionary plan made the team rethink the space.
-imaginative|adj.|Full of fresh or original ideas.|The kids found an imaginative use for every box.
-inventive|adj.|Creative in making new things or solutions.|He is an inventive cook with leftovers.
-novel|adj.|New and different in an interesting way.|The novel approach made the game more fun.
-original|adj.|Fresh and not copied from others.|She had an original answer to the question.
-unorthodox|adj.|Different from the usual way of doing things.|Their unorthodox seating plan worked beautifully.
-idiosyncratic|adj.|Distinctive in a personal, unusual way.|The shop has an idiosyncratic charm.
-singular|adj.|Remarkably unusual or distinctive.|She has a singular talent for remembering names.
-distinctive|adj.|Easy to recognize as different from others.|The singer has a distinctive voice.
-inimitable|adj.|So distinctive that it cannot be copied well.|Her inimitable laugh filled the room.
-quintessential|adj.|The clearest example of a particular type.|That corner café is quintessential Paris to me.
-archetypal|adj.|A classic example of a kind of thing.|It was the archetypal rainy Sunday afternoon.
-emblematic|adj.|Serving as a clear symbol or example.|The crowded sidewalk felt emblematic of the city.
-iconic|adj.|Widely recognized and remembered.|That iconic photograph still hangs in the hallway.
-storied|adj.|Famous because of a long and interesting history.|We visited the city's storied old theater.
-illustrious|adj.|Well known for impressive achievements.|The school has an illustrious list of graduates.
-renowned|adj.|Known and admired by many people.|The renowned bakery had a line around the block.
-lauded|adj.|Highly praised by others.|The lauded restaurant lived up to its reputation.
-esteemed|adj.|Greatly respected and valued.|She is an esteemed teacher in the neighborhood.
-venerated|adj.|Treated with deep respect.|The venerated coach returned for the ceremony.
-revered|adj.|Deeply admired and respected.|His revered aunt taught him to cook.
-acclaimed|adj.|Publicly praised for excellence.|The acclaimed play finally came to our town.
-distinguished|adj.|Notable for excellence or achievement.|The distinguished guest spoke without notes.
-preeminent|adj.|More respected or important than others in a field.|She is a preeminent researcher on the topic.
-exemplary|adj.|So good that it sets an example.|His patience during the delay was exemplary.
-commendable|adj.|Worthy of praise.|Their commendable effort kept the park clean.
-laudable|adj.|Deserving praise or admiration.|Helping the new family settle in was a laudable gesture.
-meritorious|adj.|Deserving recognition for being good or useful.|Her meritorious work earned a small award.
-admirable|adj.|Worthy of respect or approval.|His willingness to apologize was admirable.
-noble|adj.|Showing high moral character or purpose.|It was a noble offer, even if we declined.
-altruistic|adj.|Concerned with helping others rather than yourself.|Her altruistic impulse led her to volunteer.
-magnanimous|adj.|Generous and forgiving, especially toward a rival.|He was magnanimous after losing the game.
-benevolent|adj.|Kind and wishing good for others.|The benevolent neighbor brought soup to everyone.
-munificent|adj.|Very generous with money or gifts.|A munificent donor paid for the new benches.
-charitable|adj.|Kind in judgment or generous in help.|Try to take a charitable view of his mistake.
-lenient|adj.|Not as strict as you might expect.|The teacher was lenient about the late assignment.
-forgiving|adj.|Willing to stop blaming someone for a mistake.|She was forgiving when I forgot the date.
-amenable|adj.|Willing to agree or be guided.|They were amenable to changing dinner plans.
-accommodating|adj.|Willing to adjust to help others.|The café was accommodating about our large group.
-obliging|adj.|Happy to do a favor or help.|Our obliging friend offered us a ride.
-compliant|adj.|Willing to follow a request or rule.|The new setup is compliant with building rules.
-conciliatory|adj.|Intended to make peace after disagreement.|Her conciliatory note reopened the conversation.
-reconciliatory|adj.|Aimed at restoring a friendly relationship.|He made a reconciliatory gesture after the argument.
-collaborative|adj.|Working with others toward a shared result.|The project felt collaborative from the start.
-collegial|adj.|Friendly and cooperative among colleagues.|Their collegial manner made meetings easier.
-communal|adj.|Shared by or involving a group.|The communal table drew strangers into conversation.
-inclusive|adj.|Making people feel welcome and involved.|She planned an inclusive game for all ages.
-egalitarian|adj.|Treating people as equals.|The group had an egalitarian way of making decisions.
-reciprocal|adj.|Given or felt equally by both sides.|Their support for each other was reciprocal.
-mutual|adj.|Shared or felt by two or more people.|Our mutual interest in books started the friendship.
-symbiotic|adj.|Benefiting both sides in a close relationship.|The café and bookshop have a symbiotic partnership.
-interdependent|adj.|Relying on each other in important ways.|The two teams are interdependent during a launch.
-cohesive|adj.|Working well together as one whole.|The small group became cohesive during the trip.
-harmonious|adj.|Pleasantly balanced or free from conflict.|The room felt harmonious after they rearranged it.
-concordant|adj.|Agreeing or fitting together well.|Their concordant opinions made the choice easy.
-congruent|adj.|In agreement or consistent with something.|Her actions were congruent with her promises.
-compatible|adj.|Able to work or fit well together.|Their travel styles are surprisingly compatible.
-complementary|adj.|Different in ways that work well together.|Their complementary skills made the project easier.
-complement|verb|To add something that makes another thing better.|The bright salad will complement the rich pasta.
-juxtapose|verb|To put things side by side for comparison.|The exhibit will juxtapose old maps with new ones.
-contrast|verb|To show how two things differ.|The photos contrast winter light with summer light.
-distinguish|verb|To recognize or show a difference.|Can you distinguish the two flavors in this tea?
-differentiate|verb|To make or notice a difference between things.|Her careful notes differentiate the two plans.
-discern|verb|To notice something that is not immediately obvious.|I could discern a hint of cinnamon in the sauce.
-elucidate|verb|To make something clearer by explaining it.|Could you elucidate the rule for the rest of us?
-illuminate|verb|To explain or shed light on something.|Her example helped illuminate the main point.
-clarify|verb|To make an idea easier to understand.|A quick sketch will clarify what I mean.
-articulate|verb|To express an idea clearly in words.|He could articulate why the place felt familiar.
-expound|verb|To explain something in detail.|She began to expound on her favorite novel.
-elaborate|verb|To add more detail to an explanation.|Could you elaborate on what happened next?
-qualify|verb|To add a limit or condition to a claim.|I should qualify my answer: it worked only once.
-contextualize|verb|To explain the background that gives meaning.|The guide helped contextualize the old photographs.
-substantiate|verb|To support a claim with evidence.|Can you substantiate that number before we share it?
-corroborate|verb|To confirm a claim with other evidence.|The receipt helped corroborate his story.
-validate|verb|To show that a view or feeling is reasonable.|Her reply helped validate his concern.
-vindicate|verb|To show that someone was right after doubt.|The final score seemed to vindicate her choice.
-refute|verb|To show that a statement is wrong.|The new facts refute that old rumor.
-rebut|verb|To answer a claim with a counterargument.|She chose to rebut the criticism calmly.
-contest|verb|To challenge a claim or decision.|They plan to contest the parking ticket.
-scrutinize|verb|To examine something very carefully.|We should scrutinize the bill before paying.
-appraise|verb|To judge the value or quality of something.|He paused to appraise the old table.
-evaluate|verb|To judge something carefully.|Let's evaluate both routes before leaving.
-assess|verb|To form a judgment after checking the facts.|The doctor will assess the injury tomorrow.
-weigh|verb|To consider different sides before deciding.|We need to weigh the cost against the time saved.
-ruminate|verb|To think carefully about something for a while.|I need to ruminate on the offer before deciding.
-contemplate|verb|To think deeply about something.|She likes to contemplate a question on her walk.
-ponder|verb|To think about something for a while.|I need a day to ponder your suggestion.
-muse|verb|To think or speak thoughtfully.|He began to muse about moving closer to home.
-reflect|verb|To think carefully about past events.|I took the evening to reflect on our talk.
-reconsider|verb|To think again about a choice.|The weather made us reconsider the hike.
-reassess|verb|To look at something again with fresh judgment.|We should reassess the plan after lunch.
-recalibrate|verb|To adjust an approach after new information.|The team had to recalibrate after the delay.
-adapt|verb|To change in response to new conditions.|We can adapt the recipe for fewer guests.
-improvise|verb|To invent a solution without preparation.|When the oven broke, we had to improvise.
-expedite|verb|To make a process happen more quickly.|Calling ahead may expedite the pickup.
-facilitate|verb|To make an action easier to do.|A shared calendar could facilitate our planning.
-streamline|verb|To make a process simpler and faster.|We can streamline the morning routine.
-optimize|verb|To make something work as well as possible.|She tried to optimize her route across town.
-refine|verb|To improve something through small changes.|We can refine the invitation tomorrow.
-polish|verb|To improve the final details of something.|He stayed late to polish his speech.
-hone|verb|To sharpen a skill through practice.|She is trying to hone her public speaking.
-cultivate|verb|To develop something with time and care.|I want to cultivate a habit of reading daily.
-foster|verb|To encourage something to grow.|The club hopes to foster new friendships.
-nurture|verb|To help something grow through care.|They nurture their small garden all summer.
-bolster|verb|To strengthen or support something.|The good news helped bolster everyone's mood.
-fortify|verb|To make something stronger or more resilient.|A hearty breakfast will fortify us for the walk.
-buttress|verb|To give extra support to an argument or idea.|New evidence will buttress her proposal.
-reinforce|verb|To make an idea or structure stronger.|His example helped reinforce the lesson.
-galvanize|verb|To spur people into action.|The announcement helped galvanize the volunteers.
-mobilize|verb|To organize people for action.|The neighbors will mobilize for the cleanup.
-embolden|verb|To give someone more courage.|Her encouragement helped embolden me to apply.
-invigorate|verb|To fill with energy or enthusiasm.|A brisk walk can invigorate the afternoon.
-revitalize|verb|To give new life or energy.|The small market helped revitalize the street.
-rejuvenate|verb|To make someone feel fresh again.|A quiet weekend can rejuvenate anyone.
-replenish|verb|To fill up what has been used.|We stopped to replenish our water bottles.
-restore|verb|To bring something back to a better state.|A good night's sleep helped restore my patience.
-ameliorate|verb|To make a bad situation better.|A clearer schedule could ameliorate the confusion.
-mitigate|verb|To make a problem less severe.|Leaving early should mitigate the traffic risk.
-alleviate|verb|To make discomfort or a problem less intense.|The new chair helped alleviate her back pain.
-assuage|verb|To ease an unpleasant feeling.|A reassuring call helped assuage my worry.
-soothe|verb|To calm or ease pain or worry.|The familiar song seemed to soothe the baby.
-placate|verb|To calm someone who is upset.|An apology helped placate the frustrated guest.
-appease|verb|To satisfy someone who is angry or demanding.|The refund did little to appease him.
-pacify|verb|To calm anger or disorder.|A patient explanation helped pacify the crowd.
-defuse|verb|To make a tense situation less dangerous.|Her joke helped defuse the argument.
-deescalate|verb|To reduce the intensity of a conflict.|He tried to deescalate the dispute in the hallway.
-mediate|verb|To help two sides reach an agreement.|A friend offered to mediate their disagreement.
-arbitrate|verb|To make a decision in a dispute between sides.|They asked their neighbor to arbitrate the contest.
-negotiate|verb|To discuss terms until an agreement is reached.|We can negotiate a later checkout time.
-broker|verb|To help arrange an agreement between others.|She managed to broker a deal between the teams.
-concede|verb|To admit a point or give something up.|I concede that your route is shorter.
-acquiesce|verb|To accept a decision without arguing further.|He chose to acquiesce and order the soup.
-compromise|verb|To settle by giving up part of what each side wants.|We can compromise and meet halfway.
-reconcile|verb|To restore friendship or make ideas agree.|They took time to reconcile after the fight.
-redress|verb|To correct a wrong or unfair situation.|The store offered a refund to redress the mistake.
-rectify|verb|To put something wrong right.|We called the hotel to rectify the booking error.
-remedy|verb|To fix a problem or improve a bad situation.|A second lamp might remedy the dark corner.
-salvage|verb|To save something from a bad outcome.|We managed to salvage the picnic under a shelter.
-recoup|verb|To get back something lost, especially money.|The sale helped them recoup their expenses.
-reclaim|verb|To take back something that was lost or neglected.|She wants to reclaim her weekends for rest.
-reinvigorate|verb|To give fresh energy to something.|The new members helped reinvigorate the club.
-reimagine|verb|To think of something in a new way.|They decided to reimagine the unused room.
-repurpose|verb|To use something for a different purpose.|We can repurpose the jars for flowers.
-reconfigure|verb|To arrange parts in a new way.|They reconfigure the tables for big groups.
-reorient|verb|To shift direction or focus.|The team had to reorient after the announcement.
-reframe|verb|To present or think about something differently.|She helped me reframe the setback as a lesson.
-recast|verb|To describe or present in a new form.|The article recast the debate in simpler terms.
-revisit|verb|To return to an idea or place again.|Let's revisit this question next week.
-reappraise|verb|To judge again in light of new information.|We should reappraise the plan after the test run.
-reinterpret|verb|To give a new meaning to something familiar.|The chef chose to reinterpret a classic dish.
-square|verb|To make two apparently different facts fit together.|I cannot square those two versions of the story.
-acumen|noun|Sharp judgment, especially in practical matters.|Her business acumen helped the little shop thrive.
-aplomb|noun|Calm confidence in a difficult situation.|He handled the surprise question with aplomb.
-gravitas|noun|Serious dignity that makes others listen.|Her calm voice gave the announcement gravitas.
-poise|noun|Calm self-control and confident bearing.|She answered the rude question with poise.
-verve|noun|Lively energy and spirit.|The band played the old song with new verve.
-rapport|noun|An easy, comfortable connection between people.|The two neighbors built a quick rapport.
-camaraderie|noun|Warm friendship within a group.|The long trip created real camaraderie among us.
-affinity|noun|A natural liking or connection.|I feel an affinity for quiet bookstores.
-solidarity|noun|Unity and support among people.|The neighbors showed solidarity after the storm.
-reciprocity|noun|An exchange that works in both directions.|Their friendship was built on reciprocity.
-consensus|noun|General agreement among a group.|We reached a consensus about where to eat.
-accord|noun|Agreement or harmony between people.|They came to an accord over the weekend plans.
-stewardship|noun|Responsible care of something entrusted to you.|Good stewardship kept the garden healthy.
-impetus|noun|The force or reason that starts action.|The invitation gave me the impetus to visit.
-catalyst|noun|Something that causes change or action.|That conversation was the catalyst for the move.
-momentum|noun|Forward progress that becomes easier to keep going.|Once we started, the project gained momentum.
-trajectory|noun|The path something follows as it changes.|Her career took a surprising trajectory.
-precedent|noun|An earlier example that guides a later choice.|Their decision set a useful precedent.
-paradigm|noun|A model or familiar way of understanding things.|The new schedule changed our whole paradigm.
-ethos|noun|The guiding character or values of a group.|Sharing is part of the club's ethos.
-tenet|noun|A belief that guides a person or group.|Fairness is a central tenet of their team.
-credo|noun|A short statement of guiding beliefs.|Her credo is simple: show up and help.
-axiom|noun|A principle accepted as generally true.|His favorite axiom is to measure twice.
-premise|noun|An idea on which an argument or plan rests.|I like the plan, but I question its premise.
-inference|noun|A conclusion drawn from the available clues.|Her inference about the delay was correct.
-insight|noun|A clear and useful understanding of something.|Your insight changed how I see the problem.
-discernment|noun|The ability to judge subtle differences well.|Choosing a good editor takes discernment.
-perspective|noun|A particular way of seeing a situation.|The trip gave me a new perspective on home.
-vantage|noun|A position that offers a useful view.|From our vantage, the stage was easy to see.
-hindsight|noun|Understanding gained after an event has happened.|In hindsight, we should have taken the bus.
-foresight|noun|The ability to plan for what may happen.|Her foresight saved us from the rain.
-intuition|noun|An understanding that comes without conscious reasoning.|My intuition said we should call first.
-curiosity|noun|A strong desire to learn or know more.|His curiosity led him down every side street.
-skepticism|noun|A habit of questioning claims before accepting them.|A little skepticism is healthy with bold promises.
-scrutiny|noun|Close and careful examination.|The proposal held up under scrutiny.
-tenacity|noun|Determination that lasts through setbacks.|Her tenacity got the event organized.
-resilience|noun|The ability to recover from difficulty.|The town showed resilience after the flood.
-fortitude|noun|Courage and endurance through hardship.|She faced the long recovery with fortitude.
-resolve|noun|Firm determination to do something.|His resolve strengthened after the first attempt.
-conviction|noun|A strongly held belief or sense of certainty.|She spoke with conviction about the cause.
-humility|noun|A modest, realistic view of your own importance.|He accepted the award with humility.
-integrity|noun|Honesty and steady moral principles.|People trust her because of her integrity.
-compassion|noun|Concern for another person's suffering.|Her compassion showed in the small details.
-civility|noun|Polite respect, especially during disagreement.|The debate stayed lively without losing civility.
-tact|noun|Skill in handling a sensitive moment kindly.|It took tact to raise the issue at dinner.
-finesse|noun|Skillful handling of a delicate situation.|She solved the seating problem with finesse.
-ingenuity|noun|Cleverness in creating useful solutions.|Their ingenuity turned a shed into a studio.
-dexterity|noun|Quick, skillful use of hands or mind.|The baker shaped each loaf with dexterity.
-precision|noun|Exactness and careful accuracy.|The recipe needs precision at this stage.
-clarity|noun|The quality of being easy to understand.|A short example brought clarity to the instructions.
-lucidity|noun|Clear and easy-to-follow expression.|I admired the lucidity of her explanation.
-eloquence|noun|Powerful and graceful expression.|His quiet eloquence made the toast memorable.
-brevity|noun|Saying only what is needed.|Brevity made her message more effective.
-cadence|noun|The rhythm of speech or movement.|I recognized the cadence of his voice.
-resonance|noun|A lasting emotional meaning or effect.|The story gained resonance after our trip.
-texture|noun|The details that make something feel rich or real.|The little anecdotes gave the essay texture.
-subtlety|noun|A fine distinction that is easy to miss.|The joke works because of its subtlety.
-poignancy|noun|The quality of being deeply moving.|The ending had an unexpected poignancy.
-serendipity|noun|The luck of finding something good by accident.|Pure serendipity brought us to that café.
-happenstance|noun|A coincidence or chance event.|By happenstance, we boarded the same train.
-confluence|noun|A coming together of people, events, or ideas.|A confluence of good timing made the trip possible.
-convergence|noun|The act of moving toward the same point.|Their ideas showed a surprising convergence.
-dichotomy|noun|A division into two contrasting parts.|The city has a curious dichotomy of old and new.
-paradox|noun|Something that seems contradictory but may be true.|The paradox is that slowing down saved us time.
-irony|noun|A contrast between what is expected and what happens.|The irony was that our guide got lost.
-ambiguity|noun|Uncertainty because something has several meanings.|The invitation's ambiguity confused everyone.
-anomaly|noun|Something that does not fit the usual pattern.|That warm January day was an anomaly.
-outlier|noun|A person or result far from the usual range.|That one long commute was an outlier.
-caveat|noun|A warning or condition attached to a claim.|I recommend the route, with one caveat: it is steep.
-corollary|noun|A result that naturally follows from another idea.|A corollary of the new hours is an earlier dinner.
-ramification|noun|A further, often complex result of an action.|We had not considered every ramification of moving.
-implication|noun|A likely effect or unstated meaning.|What is the implication of changing the date?
-repercussion|noun|An indirect effect, often an unwelcome one.|The shortcut had an unexpected repercussion.
-tradeoff|noun|A balance between a gain and a cost.|The tradeoff is a cheaper room with a longer walk.
-dilemma|noun|A choice between difficult options.|We faced a dilemma over which show to see.
-quandary|noun|A state of uncertainty about what to do.|I was in a quandary about the invitation.
-conundrum|noun|A confusing problem that is hard to solve.|The missing key presented a small conundrum.
-impasse|noun|A point where no progress can be made.|The debate reached an impasse by midnight.
-reprieve|noun|A short break from something unpleasant.|The sunny hour offered a reprieve from the rain.
-respite|noun|A brief period of rest or relief.|The quiet café gave us a respite from the crowd.
-solace|noun|Comfort during sadness or trouble.|She found solace in long walks with friends.
-refuge|noun|A safe place or source of shelter.|The library became my refuge on hot afternoons.
-sanctuary|noun|A safe or peaceful place.|Their porch is a sanctuary after work.
-oasis|noun|A welcome calm spot amid busyness.|The courtyard felt like an oasis downtown.
-interlude|noun|A short pause between longer activities.|We enjoyed a musical interlude before dinner.
-hiatus|noun|A temporary break in an activity.|The club took a summer hiatus.
-repertoire|noun|The full set of things someone can do well.|That dish is now part of my dinner repertoire.
-panache|noun|Confident and stylish flair.|She decorated the tiny room with panache.
-flair|noun|A natural talent or distinctive style.|He has a flair for finding good gifts.
-cachet|noun|A quality that brings prestige or appeal.|The old address still carries some cachet.
-allure|noun|A strong and often mysterious attraction.|The allure of a quiet weekend won us over.
-ambience|noun|The mood or feeling of a place.|Soft music gave the café a warm ambience.
-aesthetic|noun|A particular style or sense of beauty.|The room has a calm, spare aesthetic.
-motif|noun|An idea or image that appears repeatedly.|Blue flowers became a motif in her paintings.
-milieu|noun|The social or cultural setting around someone.|He felt at home in the theater milieu.
-zeitgeist|noun|The general mood and ideas of a particular time.|That song captured the zeitgeist of the summer.
-vignette|noun|A brief, vivid description or scene.|The essay opens with a vignette of the market.
-anecdote|noun|A short story about a real incident.|She told a funny anecdote about the train.
-parable|noun|A short story used to teach a lesson.|His tale sounded like a parable about patience.
-allegory|noun|A story that also carries a symbolic meaning.|We read the play as an allegory about power.
-allusion|noun|An indirect reference to another work or idea.|The title is an allusion to an old poem.
-metaphor|noun|A comparison that describes one thing as another.|Her storm metaphor made the feeling vivid.
-analogy|noun|A comparison used to make an idea clearer.|The cooking analogy helped me understand the process.
-idiom|noun|An expression whose meaning is not fully literal.|He learned a new idiom at dinner.
-lexicon|noun|The words used in a language or field.|That phrase entered our family lexicon.
-vernacular|noun|The everyday language of a group or place.|She explained the rule in plain vernacular.
-persona|noun|The public role or character someone presents.|His stage persona is bolder than he is.
-archetype|noun|A classic example of a particular kind.|That detective is a familiar archetype.
-prototype|noun|An early model used to test an idea.|They showed us a prototype of the chair.
-epitome|noun|A perfect example of a quality or type.|Her cozy kitchen is the epitome of welcome.
-quintessence|noun|The purest or most typical form of something.|That meal felt like the quintessence of autumn.
-microcosm|noun|A small example of a much larger world.|The crowded train was a microcosm of the city.
-watershed|noun|A turning point after which things change.|That first trip was a watershed in their friendship.
-milestone|noun|An important stage in a longer journey.|Finishing the draft felt like a milestone.
-benchmark|noun|A standard used for comparison.|Their first event set a high benchmark.
-touchstone|noun|A test or example used to judge other things.|That album became a touchstone for the band.
-bellwether|noun|An early sign of what may happen more widely.|The busy market was a bellwether of spring.
-harbinger|noun|A sign that something is coming.|The first crocus was a harbinger of warmer days.
-portent|noun|An event that seems to signal the future.|The sudden quiet felt like a portent of rain.
-quixotic|adj.|Idealistic in a way that may be impractical.|His quixotic plan to fix every bike delighted us.
-Sisyphean|adj.|Endless and frustrating despite much effort.|Clearing spam felt like a Sisyphean task.
-Pyrrhic|adj.|Won at such a high cost that success feels hollow.|It was a Pyrrhic victory after all that stress.
-Kafkaesque|adj.|Absurdly complicated and oppressive, like bad bureaucracy.|The permit process became almost Kafkaesque.
-Orwellian|adj.|Oppressively controlling, especially through language or surveillance.|The new monitoring rule felt Orwellian to him.
-Machiavellian|adj.|Cleverly manipulative in pursuit of power.|Her Machiavellian plan made the office uneasy.
-Herculean|adj.|Requiring enormous strength or effort.|Moving the piano was a Herculean effort.
-Platonic|adj.|Close and affectionate without being romantic.|They have a deep Platonic friendship.
-Byzantine|adj.|Needlessly intricate and hard to follow.|The building's rules were Byzantine.
-Dickensian|adj.|Reminiscent of harsh poverty or old-fashioned hardship.|The cramped office felt almost Dickensian.
-Homeric|adj.|Epic in size, length, or scale.|Grandpa gave a Homeric account of the fishing trip.
-Faustian|adj.|Involving a gain that comes at a serious moral cost.|The offer felt like a Faustian bargain.
-Spartan|adj.|Very simple and without comforts.|The cabin was Spartan but beautifully quiet.
-Pavlovian|adj.|Automatic because of a learned association.|The doorbell drew a Pavlovian bark from the dog.
-Freudian|adj.|Suggesting a hidden motive or unconscious thought.|She laughed at her Freudian slip during dinner.
-laconic|adj.|Using very few words, often with dry effect.|His laconic reply was simply, “Perhaps.”
-loquacious|adj.|Talking a great deal, often with pleasure.|Our loquacious driver knew every story in town.
-taciturn|adj.|Usually quiet and unwilling to say much.|He is taciturn at parties but warm one-on-one.
-pithy|adj.|Brief, forceful, and full of meaning.|Her pithy answer ended the debate.
-esoteric|adj.|Understood by only a small group with special knowledge.|The conversation became too esoteric for the rest of us.
-arcane|adj.|Known by few people and hard to understand.|The form demanded knowledge of arcane rules.
-oblique|adj.|Indirect rather than plainly stated.|He made an oblique reference to the surprise.
-cryptic|adj.|Mysterious and difficult to understand.|Her cryptic text sent us guessing all morning.
-inscrutable|adj.|Hard to read or understand.|His inscrutable expression gave nothing away.
-enigmatic|adj.|Mysterious in a way that invites curiosity.|The note ended with an enigmatic signature.
-equivocal|adj.|Open to more than one interpretation; not clear-cut.|Her equivocal answer left us uncertain.
-ambivalent|adj.|Having mixed or conflicting feelings.|I feel ambivalent about moving so soon.
-sanguine|adj.|Hopeful and confident despite uncertainty.|She stayed sanguine about the delayed flight.
-sardonic|adj.|Dryly mocking in a sharp or skeptical way.|He gave a sardonic smile at the promise.
-pensive|adj.|Quietly thoughtful, often with a hint of sadness.|She grew pensive on the ride home.
-wistful|adj.|Gently sad about something missed or past.|He sounded wistful when he mentioned his hometown.
-rueful|adj.|Showing regret with a touch of humor.|She gave a rueful laugh at her old haircut.
-effusive|adj.|Expressing praise or feeling with great warmth.|His effusive thanks surprised the volunteers.
-ebullient|adj.|Overflowing with cheerful energy.|The crowd was ebullient after the concert.
-stoic|adj.|Calm in the face of pain or difficulty.|She stayed stoic through the long wait.
-impetuous|adj.|Acting quickly without much thought.|Our impetuous detour led to a lovely beach.
-capricious|adj.|Changing suddenly and unpredictably.|The capricious weather ruined our picnic plan.
-mercurial|adj.|Changing mood or direction quickly.|The mercurial coach kept everyone guessing.
-ephemeral|adj.|Lasting for only a short time.|The sunset's color was beautiful but ephemeral.
-perennial|adj.|Returning or continuing year after year.|Parking is a perennial problem on that street.
-immutable|adj.|Unable to be changed.|The deadline is not immutable; we can discuss it.
-inexorable|adj.|Impossible to stop or persuade to change course.|The inexorable march of time surprised us all.
-incipient|adj.|Just beginning to develop.|She noticed the incipient signs of a cold.
-inchoate|adj.|Not yet clearly formed or fully developed.|I had only an inchoate idea for the essay.
-nascent|adj.|Newly beginning and full of possibility.|The nascent friendship grew over shared lunches.
-latent|adj.|Present but not yet visible or active.|The class revealed her latent talent for drawing.
-quiescent|adj.|Quiet and temporarily inactive.|The garden lay quiescent through winter.
-ostensible|adj.|Presented as true, though perhaps only on the surface.|The ostensible reason was the weather, but we suspected fatigue.
-tacit|adj.|Understood without being directly said.|We had a tacit agreement to leave early.
-specious|adj.|Seeming convincing but actually misleading.|His specious excuse did not survive one question.
-spurious|adj.|False or lacking a genuine basis.|The rumor rested on a spurious claim.
-tenuous|adj.|Weak, slight, or not firmly supported.|The link between the two events is tenuous.
-incontrovertible|adj.|Too clear or certain to be denied.|The photographs offered incontrovertible proof.
-perfunctory|adj.|Done with little care or interest.|He gave the room a perfunctory glance.
-desultory|adj.|Moving without a clear plan or steady purpose.|We had a desultory chat while waiting.
-prosaic|adj.|Ordinary and lacking imaginative appeal.|The explanation was more prosaic than the rumor.
-anodyne|adj.|So mild or bland that it causes no offense.|Her anodyne reply satisfied no one.
-gratuitous|adj.|Unnecessary or given without a good reason.|The film's gratuitous detour slowed the story.
-ancillary|adj.|Helpful but secondary to the main thing.|The extra notes are ancillary to the guide.
-tangential|adj.|Only loosely related to the main subject.|That story is interesting but tangential to our plan.
-recalcitrant|adj.|Stubbornly resistant to rules or correction.|The recalcitrant printer refused another page.
-intransigent|adj.|Unwilling to compromise or change a position.|Both sides stayed intransigent over the date.
+incisive|adj.|Sharply clear and direct about what really matters.|Her incisive question ended a debate that had run all period.
+cogent|adj.|Clear, logical, and convincing.|He made a cogent case for moving the test to Friday.
+trenchant|adj.|Sharp, forceful, and often critical.|The editorial offered a trenchant critique of the new dress code.
+perspicacious|adj.|Quick to notice and understand what others miss.|A perspicacious reader will spot the twist by chapter three.
+perspicuous|adj.|Expressed so clearly that it is easy to follow.|Her perspicuous lab report needed no extra explanation.
+pellucid|adj.|Perfectly clear, whether water or writing.|Her pellucid prose made a dense topic feel simple.
+limpid|adj.|Clear and transparent, like still water.|We could see every pebble through the limpid stream.
+sagacious|adj.|Wise, with sound and practical judgment.|Our sagacious coach knew exactly when to call a timeout.
+prescient|adj.|Seeming to know what will happen before it does.|His prescient decision to back up the files saved our project.
+adroit|adj.|Skillful and clever, especially in tricky situations.|She made an adroit change of subject when grades came up.
+maladroit|adj.|Clumsy or awkward, in movement or in handling people.|His maladroit apology only made her angrier.
+circumspect|adj.|Careful to consider risks before acting.|Be circumspect about what you post before applying to college.
+chary|adj.|Cautious and reluctant, especially about a risk.|She was chary of lending her notes after last time.
+erudite|adj.|Showing deep and wide learning.|The erudite guest speaker quoted three languages in one answer.
+rarefied|adj.|Exclusive and far removed from ordinary life.|National debate finals feel like a rarefied world of jargon.
+recondite|adj.|Little known and understood by only a few experts.|He loves recondite facts about medieval siege engines.
+abstruse|adj.|Difficult to understand because it is so complex.|The abstruse proof took our whole class a week to follow.
+arcane|adj.|Mysterious and known only to a few.|The club has arcane rules nobody remembers writing.
+equivocal|adj.|Open to more than one interpretation, often on purpose.|The principal gave an equivocal answer about the snow day.
+inscrutable|adj.|Impossible to read or understand.|The judge kept an inscrutable face through every speech.
+gnomic|adj.|Short and wise-sounding but hard to interpret.|Our coach's gnomic advice was just ‘Play the space.’
+oracular|adj.|Mysterious and prophetic in tone.|She gave an oracular smile and said the results would surprise us.
+aphoristic|adj.|Expressed in short, memorable statements of truth.|Grandpa speaks in an aphoristic style, all one-liners.
+pithy|adj.|Brief, clever, and full of meaning.|Her pithy caption got more likes than the photo.
+sententious|adj.|Given to pompous moralizing.|The sententious speech lectured us about phones for twenty minutes.
+loquacious|adj.|Talking a great deal, often with ease and charm.|Our loquacious tour guide never let a silence last.
+garrulous|adj.|Talking too much, especially about unimportant things.|A garrulous passenger described her whole family tree.
+voluble|adj.|Speaking easily, rapidly, and at length.|He turns voluble the moment anyone mentions space travel.
+prolix|adj.|Using too many words; tediously long.|Cut the prolix intro and start with your thesis.
+periphrastic|adj.|Using many words where a few would do.|‘In the event that’ is a periphrastic way to say ‘if.’
+sesquipedalian|adj.|Fond of long words, or made of long words.|His sesquipedalian essay sent the teacher to a dictionary.
+grandiloquent|adj.|Pompous and showy in speech or writing.|The grandiloquent campaign speech promised a ‘renaissance of lunch.’
+bombastic|adj.|Using inflated language to sound important.|Ignore the bombastic trailer; the movie is quiet and sweet.
+orotund|adj.|Full-voiced and imposing, or pompous in style.|The announcer's orotund voice filled the gym.
+turgid|adj.|Swollen; of writing, dense and pompous.|The turgid textbook chapter put half the class to sleep.
+taciturn|adj.|Saying very little by nature.|Our taciturn lab partner spoke only to correct the units.
+reticent|adj.|Reluctant to share thoughts or feelings.|He was reticent about his audition until the cast list came out.
+diffident|adj.|Shy and lacking confidence in yourself.|The diffident freshman turned out to be our best debater.
+brusque|adj.|Abrupt and short in a way that seems rude.|The coach's brusque ‘Again’ was all the feedback we got.
+mordant|adj.|Biting and sharply sarcastic in humor.|Her mordant review called the sequel ‘a nap with explosions.’
+acerbic|adj.|Sharp and harsh in tone or wit.|The acerbic critic rarely liked anything.
+vitriolic|adj.|Filled with bitter, cruel hostility.|The comments section turned vitriolic within an hour.
+acrimonious|adj.|Bitter and angry, especially in an argument.|The group chat split after an acrimonious fight over weekend plans.
+vituperative|adj.|Bitterly abusive in language.|He deleted his vituperative reply before sending it.
+splenetic|adj.|Bad-tempered and spiteful.|A splenetic customer yelled at the cashier over a coupon.
+irascible|adj.|Easily made angry.|The irascible neighbor yells whenever a ball lands in his yard.
+choleric|adj.|Hot-tempered and quick to anger.|The choleric referee handed out three cards in ten minutes.
+captious|adj.|Quick to find fault over small things.|A captious reviewer complained mostly about the font.
+censorious|adj.|Severely critical of others.|Her censorious tone made everyone afraid to share drafts.
+pejorative|adj.|Expressing contempt or disapproval.|‘Nerd’ was once pejorative, but now we wear it proudly.
+scurrilous|adj.|Spreading scandalous claims to damage a reputation.|The scurrilous rumor about the candidate was entirely false.
+seditious|adj.|Urging people to rebel against authority.|The government banned the newspaper as seditious.
+iconoclastic|adj.|Attacking cherished beliefs or traditions.|Her iconoclastic essay argued that homework should be abolished.
+heterodox|adj.|Departing from accepted beliefs.|He holds heterodox views on how history should be taught.
+doctrinaire|adj.|Rigidly applying a theory regardless of practical results.|A doctrinaire reading of the rules ignored common sense.
+hidebound|adj.|Unwilling to change because of tradition or habit.|The hidebound committee rejected every new idea.
+fusty|adj.|Stuffy, musty, and old-fashioned.|The fusty attic smelled of dust and mothballs.
+staid|adj.|Respectable and serious, but dull.|The staid assembly woke up when the jazz band started.
+stolid|adj.|Calm, dependable, and showing little emotion.|The stolid guard did not blink at the tourists' jokes.
+phlegmatic|adj.|Calm and hard to excite or upset.|Our phlegmatic goalie never panics on penalties.
+imperturbable|adj.|Impossible to upset or rattle.|The imperturbable pilot cracked jokes through the turbulence.
+equanimous|adj.|Calm and even-tempered, even when things go wrong.|She stayed equanimous when her laptop died mid-presentation.
+blithe|adj.|Cheerfully carefree, sometimes carelessly so.|He showed blithe confidence about a test he never studied for.
+insouciant|adj.|Casually unconcerned.|She gave an insouciant shrug at the hour-long line.
+jaunty|adj.|Lively, cheerful, and self-confident.|He strolled in with a jaunty grin and no homework.
+jocular|adj.|Fond of joking; playfully humorous.|The principal's jocular announcement made everyone laugh.
+waggish|adj.|Humorous in a playful, mischievous way.|A waggish student renamed the Wi-Fi network ‘Homework Excuse.’
+droll|adj.|Amusing in a dry or odd way.|His droll comments made the long drive go faster.
+facetious|adj.|Joking about serious matters at the wrong time.|I was being facetious when I offered to write everyone's essays.
+glib|adj.|Smooth and easy but shallow or insincere.|His glib answer skipped every hard question.
+arch|adj.|Playfully knowing or teasing.|She gave me an arch look when I said I had ‘almost’ finished.
+impudent|adj.|Disrespectful in a bold, cheeky way.|His impudent reply earned him a week of detention.
+obstreperous|adj.|Noisy and hard to control.|An obstreperous fan was escorted out of the bleachers.
+strident|adj.|Loud, harsh, and forceful.|Her strident voice cut through the cafeteria noise.
+stertorous|adj.|Loud and labored, like heavy snoring.|Stertorous breathing came from the back row during the film.
+euphonious|adj.|Pleasing to the ear.|‘Cellar door’ is often called a euphonious phrase.
+mellifluous|adj.|Sweet, smooth, and pleasant to hear.|The narrator's mellifluous voice made the audiobook a joy.
+dulcet|adj.|Sweet and soothing to hear.|I woke to the dulcet sound of rain instead of my alarm.
+sonorous|adj.|Deep, full, and rich in sound.|The sonorous church bell carried across town.
+plangent|adj.|Loud, resonant, and mournful.|The plangent cello line made the whole audience go quiet.
+tremulous|adj.|Shaking slightly, often from nerves.|She read her poem in a tremulous voice.
+febrile|adj.|Feverish; nervously excited.|The febrile mood before results day kept us all awake.
+harried|adj.|Stressed by constant demands.|The harried barista juggled six orders at once.
+beleaguered|adj.|Under constant pressure or attack.|The beleaguered goalie faced thirty shots.
+indomitable|adj.|Impossible to defeat or discourage.|Her indomitable spirit carried the team through a losing season.
+redoubtable|adj.|Formidable and worthy of respect.|We faced a redoubtable opponent in the semifinal.
+doughty|adj.|Brave and persistent.|A doughty band of volunteers cleaned the whole beach.
+stalwart|adj.|Loyal, reliable, and hardworking.|She has been a stalwart member of the robotics team.
+indefatigable|adj.|Never tiring, no matter how long the work.|The indefatigable editor stayed until the paper went to print.
+dauntless|adj.|Fearless and determined.|The dauntless hikers kept going through the storm.
+effervescent|adj.|Bubbly, lively, and enthusiastic.|Her effervescent laugh brightened the whole room.
+ebullient|adj.|Overflowing with cheerful energy.|The ebullient winners sprinted around the field.
+effusive|adj.|Expressing feelings with great or excessive warmth.|His effusive thanks embarrassed the substitute.
+rhapsodic|adj.|Extremely enthusiastic and full of emotion.|She was rhapsodic about the new album.
+beatific|adj.|Blissfully happy and serene.|The baby gave a beatific smile after her nap.
+sanguine|adj.|Hopeful and confident, especially in a hard spot.|The coach was sanguine about our chances despite the injuries.
+convivial|adj.|Friendly, lively, and fun to be around.|The convivial dinner lasted three hours.
+avuncular|adj.|Kind and friendly in the manner of an uncle.|The avuncular bus driver remembered every student's name.
+solicitous|adj.|Showing attentive, caring concern.|The nurse was solicitous when I felt faint.
+decorous|adj.|Polite and fitting for the occasion.|The decorous ceremony ended in a sudden water fight.
+priggish|adj.|Self-righteously fussy about being correct.|His priggish reminder about the rules annoyed everyone.
+sanctimonious|adj.|Acting morally superior to others.|His sanctimonious lecture on punctuality came ten minutes late.
+supercilious|adj.|Behaving as if you are better than others.|The supercilious waiter sneered at our order.
+imperious|adj.|Arrogant and expecting to be obeyed.|The imperious team captain gave orders even to the coach.
+peremptory|adj.|Demanding immediate obedience, with no room for refusal.|A peremptory knock meant my mom had seen my grades.
+magisterial|adj.|Authoritative and showing great expertise.|Her magisterial history of the city took a decade to write.
+officious|adj.|Too eager to give orders or unwanted help.|The officious hall monitor checked our passes twice.
+importunate|adj.|Persistently demanding to the point of annoyance.|My importunate little brother asked for a ride every hour.
+obsequious|adj.|Too eager to please or obey.|The obsequious intern laughed at every one of the boss's jokes.
+unctuous|adj.|Flattering in an oily, insincere way.|The unctuous salesman called everyone ‘my friend.’
+sycophantic|adj.|Flattering powerful people to gain an advantage.|His sycophantic emails to the teacher fooled no one.
+ingratiating|adj.|Trying to win favor, often insincerely.|She gave an ingratiating smile before asking for an extension.
+servile|adj.|Excessively willing to obey or serve.|The servile assistant never questioned an order.
+craven|adj.|Contemptibly cowardly.|Letting the group take the blame was a craven move.
+pusillanimous|adj.|Lacking courage or resolve.|The pusillanimous council postponed the vote again.
+timorous|adj.|Nervous and lacking confidence.|A timorous knock came from the new kid at the door.
+skittish|adj.|Nervous and easily startled.|The skittish horse shied at every plastic bag.
+feckless|adj.|Lacking initiative, strength, or responsibility.|The feckless treasurer lost the club's receipts.
+indolent|adj.|Lazy and avoiding effort.|After an indolent summer, I had forty pages left to read.
+torpid|adj.|Sluggish and lacking energy.|The heat made the whole class torpid after lunch.
+lackadaisical|adj.|Lacking enthusiasm or effort.|Their lackadaisical defense let in three goals.
+languid|adj.|Slow, relaxed, and lacking energy.|We spent a languid afternoon floating in the lake.
+somnolent|adj.|Sleepy, or causing sleepiness.|The somnolent hum of the projector nearly knocked me out.
+soporific|adj.|Causing sleep; extremely boring.|The soporific lecture had half the room nodding.
+stultifying|adj.|Draining energy and interest through dullness or restriction.|Copying definitions for an hour is stultifying.
+dilatory|adj.|Slow to act; tending to delay.|The dilatory committee still has not chosen a theme.
+vertiginous|adj.|Causing dizziness, especially from height.|We looked down from the vertiginous glass bridge.
+tortuous|adj.|Full of twists; overly complicated.|The tortuous mountain road took two hours.
+sinuous|adj.|Curving and graceful in shape or movement.|The dancer's sinuous arms moved like water.
+precipitous|adj.|Dangerously steep, or sudden and dramatic.|Attendance took a precipitous drop after spring break.
+abstemious|adj.|Sparing in eating and drinking.|The abstemious runner skipped dessert before every race.
+ascetic|adj.|Practicing strict self-denial.|He lives an ascetic life with a mattress and a laptop.
+parsimonious|adj.|Extremely unwilling to spend money.|The parsimonious club refused to buy new jerseys.
+penurious|adj.|Extremely poor, or very stingy.|Penurious grad students lived on instant noodles.
+impecunious|adj.|Having little or no money.|An impecunious artist paid his rent in paintings.
+profligate|adj.|Recklessly wasteful, especially with money.|His profligate spending on game skins emptied his savings.
+prodigal|adj.|Spending money or resources freely and recklessly.|The prodigal heir sold the family house within a year.
+venal|adj.|Willing to be bribed; corrupt.|The venal official approved any permit for cash.
+venial|adj.|Minor and easily forgiven.|Being late once is a venial sin, not a crime.
+avaricious|adj.|Extremely greedy for wealth.|The avaricious landlord raised the rent twice in a year.
+rapacious|adj.|Aggressively greedy and grasping.|Rapacious developers bought up every empty lot.
+louche|adj.|Disreputable, often in a way that is oddly appealing.|The louche jazz club stayed open until dawn.
+raffish|adj.|Unconventional and slightly disreputable, but attractive.|The raffish actor showed up in a velvet suit.
+rakish|adj.|Dashing, jaunty, and a little reckless.|He wore his cap at a rakish angle.
+sartorial|adj.|Relating to clothing and style.|His sartorial choices include socks with sandals.
+lissome|adj.|Slim, flexible, and graceful.|The lissome gymnast folded into a perfect pike.
+hirsute|adj.|Very hairy, often in a shaggy way.|The hirsute drummer looked like a friendly bear.
+winsome|adj.|Charming in a fresh, innocent way.|The winsome puppy charmed the entire waiting room.
+resplendent|adj.|Dazzling and splendid in appearance.|The gym was resplendent with lights for the winter formal.
+effulgent|adj.|Shining brightly; radiant.|The effulgent sunrise turned the whole valley gold.
+incandescent|adj.|Glowing with heat, or intensely emotional.|She was incandescent with rage over the stolen idea.
+crepuscular|adj.|Relating to twilight, or active at dusk.|Deer are crepuscular, so drive carefully at sunset.
+diaphanous|adj.|Light, delicate, and almost see-through.|Diaphanous curtains billowed in the breeze.
+evanescent|adj.|Quickly fading from sight or memory.|The evanescent rainbow vanished before I found my phone.
+superannuated|adj.|Too old to be useful; outdated.|The library still runs on a superannuated computer.
+anachronistic|adj.|Belonging to a different time period.|A wristwatch in a Roman epic is wonderfully anachronistic.
+atavistic|adj.|Relating to ancient or ancestral instincts.|The smell of a campfire stirs something atavistic.
+vestigial|adj.|Remaining as a small trace of something that once mattered.|The tailbone is a vestigial structure.
+nugatory|adj.|Of no real value or importance.|The new rule had a nugatory effect on attendance.
+otiose|adj.|Serving no practical purpose.|Delete the otiose second paragraph.
+picayune|adj.|Petty and of little importance.|Let's skip the picayune complaints and fix the real problem.
+sedulous|adj.|Showing steady, careful, and persistent effort.|Her sedulous practice turned a weak serve into a weapon.
+assiduous|adj.|Showing great care and constant effort.|His assiduous notes became the whole class's study guide.
+punctilious|adj.|Very careful about rules and proper behavior.|The punctilious librarian logged every overdue minute.
+fastidious|adj.|Very attentive to accuracy, detail, and cleanliness.|The fastidious chef wiped every plate rim.
+persnickety|adj.|Overly fussy about small details.|My persnickety cat will drink only running water.
+fractious|adj.|Irritable, quarrelsome, and hard to control.|The fractious meeting ended without a vote.
+refractory|adj.|Stubbornly resistant to control or treatment.|The refractory printer jammed on every page.
+contumacious|adj.|Stubbornly and willfully disobedient.|The contumacious witness refused to answer the judge.
+recalcitrant|adj.|Stubbornly refusing to obey or cooperate.|The recalcitrant toddler would not put on shoes.
+intransigent|adj.|Refusing to compromise or change a position.|Both sides stayed intransigent over the budget.
 obdurate|adj.|Stubbornly refusing to change your mind.|He remained obdurate despite the new evidence.
-ubiquitous|adj.|Present or found almost everywhere.|That song seemed ubiquitous last summer.
-pervasive|adj.|Spread widely through an area or group.|A pervasive smell of bread filled the street.
-sporadic|adj.|Occurring only now and then, without a pattern.|We had sporadic rain throughout the afternoon.
-liminal|adj.|Between one stage or state and the next.|The empty station felt liminal before sunrise.
-ineffable|adj.|Too powerful or unusual to put into words.|The view gave her an ineffable sense of calm.
-apocryphal|adj.|Widely repeated but of doubtful truth.|That apocryphal story about the hotel made us laugh.
-parochial|adj.|Narrow in outlook, focused only on local concerns.|His parochial view missed the wider problem.
-myopic|adj.|Short-sighted in planning or judgment.|Cutting repairs would be a myopic decision.
-pedantic|adj.|Overly concerned with small rules or details.|I do not mean to be pedantic, but the date matters.
-ostentatious|adj.|Designed to attract attention by showing off.|The ostentatious entrance felt out of place.
-grandiose|adj.|Impressively large but perhaps unrealistic.|His grandiose plan needed a smaller first step.
-obfuscate|verb|To make something harder to understand.|The long memo seemed to obfuscate a simple answer.
-delineate|verb|To describe the boundaries or details clearly.|Could you delineate each person's role?
-distill|verb|To reduce something to its essential point.|She can distill a long discussion into one sentence.
-synthesize|verb|To combine ideas into a useful whole.|We need to synthesize everyone's suggestions.
-extrapolate|verb|To estimate beyond known facts using a pattern.|I would not extrapolate from a single bad day.
-surmise|verb|To reach a likely conclusion from limited evidence.|I surmise they took the later train.
-posit|verb|To suggest an idea as a starting point for thought.|Let me posit a simpler explanation.
-equivocate|verb|To avoid a clear answer by using vague words.|He began to equivocate when asked for a date.
-prevaricate|verb|To avoid the truth or answer indirectly.|She did not prevaricate about the mistake.
-belie|verb|To give a false impression of what is true.|His calm voice belied his nerves.
-supersede|verb|To take the place of something older.|The new schedule will supersede the printed one.
-forestall|verb|To prevent something by acting early.|We left early to forestall the traffic.
-circumvent|verb|To find a way around an obstacle.|We can circumvent the closure by taking the bridge.
-eschew|verb|To deliberately avoid or give up something.|She chose to eschew the usual small talk.
+intractable|adj.|Hard to control, manage, or solve.|Downtown traffic is an intractable problem.
+implacable|adj.|Impossible to calm, satisfy, or stop.|The implacable rival wanted a rematch every week.
+inveterate|adj.|Long established and unlikely to change.|My uncle is an inveterate punster.
+incorrigible|adj.|Impossible to correct or reform.|The incorrigible prankster struck again on the last day.
+bellicose|adj.|Eager to fight or start a war.|The bellicose speech worried neighboring countries.
+pugnacious|adj.|Quick to argue or fight.|The pugnacious debater challenged every single point.
+truculent|adj.|Eager to argue or fight; aggressively defiant.|The truculent customer demanded to see the manager.
+internecine|adj.|Destructive to both sides within a group.|Internecine feuds tore the student council apart.
+vainglorious|adj.|Excessively proud and boastful.|His vainglorious victory lap came before the final whistle.
+hubristic|adj.|Showing dangerous overconfidence.|Skipping practice before the final was hubristic.
+overweening|adj.|Showing excessive confidence or pride.|Her overweening ambition alienated her teammates.
+hegemonic|adj.|Dominating others through power or influence.|The company's hegemonic hold on search worries regulators.
+ignominious|adj.|Deserving or causing public disgrace.|The champions suffered an ignominious first-round exit.
+iniquitous|adj.|Grossly unfair or morally wrong.|The iniquitous tax fell hardest on the poor.
+execrable|adj.|Extremely bad or unpleasant.|The cafeteria's execrable pizza is somehow still popular.
+florid|adj.|Overly elaborate, or flushed with a red color.|His florid apology used the word ‘profoundly’ four times.
+bespoke|adj.|Made to order for a particular person.|He wore a bespoke suit to the gala.
+gauche|adj.|Socially awkward or tactless.|It felt gauche to ask how much her gift cost.
+boorish|adj.|Rude, rough, and ill-mannered.|His boorish behavior at dinner embarrassed his parents.
+churlish|adj.|Rude in a mean-spirited, ungracious way.|It would be churlish to refuse such a kind offer.
+obtuse|adj.|Slow to understand, or insensitive.|Is he being obtuse, or does he really not get the hint?
+benighted|adj.|Ignorant or unenlightened.|Future students may call our homework policy benighted.
+credulous|adj.|Too ready to believe things.|Credulous viewers shared the fake video by the millions.
+callow|adj.|Young and inexperienced.|The callow recruits learned fast during preseason.
+guileless|adj.|Innocent and without any deception.|Her guileless question silenced the room.
+ingenuous|adj.|Innocent, trusting, and frank.|The ingenuous freshman believed the rumor about a pool on the roof.
+disingenuous|adj.|Pretending to be more honest or naive than you are.|It is disingenuous to say you never saw the deadline.
+duplicitous|adj.|Deceitful; saying one thing while doing another.|The duplicitous character betrays everyone by the finale.
+mendacious|adj.|Lying, or not telling the truth.|The mendacious ad promised results it could not deliver.
+meretricious|adj.|Showy and attractive but without real value.|The meretricious sequel relied entirely on special effects.
+specious|adj.|Seeming plausible but actually wrong.|His specious excuse did not survive one question.
+spurious|adj.|False or based on faulty reasoning.|The study drew a spurious link between cereal and grades.
+fallacious|adj.|Based on mistaken belief or faulty logic.|The argument is fallacious because it assumes its conclusion.
+tendentious|adj.|Promoting a particular viewpoint, especially a contested one.|The tendentious documentary left out every opposing voice.
+jejune|adj.|Naive and simplistic, or dull.|Her jejune views on politics changed after the internship.
+puerile|adj.|Childishly silly.|The puerile joke still made the whole bus laugh.
+sophomoric|adj.|Immature while acting knowledgeable.|His sophomoric essay mistook big words for big ideas.
+fatuous|adj.|Silly and pointless, without seeming to realize it.|The fatuous advice was to ‘just be more motivated.’
+vapid|adj.|Dull and lacking ideas or energy.|The vapid reality show had no plot at all.
+insipid|adj.|Lacking flavor, interest, or energy.|The insipid soup tasted mostly of hot water.
+vacuous|adj.|Showing a lack of thought or intelligence.|The influencer's vacuous answer said nothing at all.
+hackneyed|adj.|Overused and no longer original.|‘It was all a dream’ is a hackneyed ending.
+quotidian|adj.|Ordinary and part of everyday life.|Her poems find beauty in quotidian chores.
+prosaic|adj.|Ordinary and lacking imagination.|The explanation was more prosaic than the rumor.
+anodyne|adj.|So mild and inoffensive that it is bland.|The anodyne speech offended no one and inspired no one.
+risible|adj.|So ridiculous it invites laughter.|The villain's risible disguise was just a mustache.
+mawkish|adj.|Sentimental in a sickly or exaggerated way.|The mawkish ending had violins swelling over a dog's goodbye.
+saccharine|adj.|Excessively sweet or sentimental.|The saccharine greeting card made me cringe.
+cloying|adj.|So sweet or sentimental it becomes unpleasant.|The cloying frosting made my teeth hurt.
+histrionic|adj.|Overly theatrical or dramatic.|His histrionic groan at the pop quiz got a laugh.
+lachrymose|adj.|Tearful, or tending to cause tears.|The lachrymose finale left the whole theater sniffling.
+lugubrious|adj.|Mournful and gloomy, often exaggeratedly.|The basset hound gave me a lugubrious look.
+elegiac|adj.|Mournful, especially about something lost.|The yearbook's elegiac tone made the seniors cry.
+dolorous|adj.|Full of grief or sorrow.|A dolorous song played as the credits rolled.
+woebegone|adj.|Looking sad and miserable.|The woebegone puppy sat outside in the rain.
+disconsolate|adj.|Unable to be comforted; deeply unhappy.|The disconsolate fans sat in the stands long after the loss.
+contrite|adj.|Sincerely sorry for having done wrong.|A contrite note appeared on my desk the next day.
+rueful|adj.|Expressing regret, often with a wry sadness.|He gave a rueful smile at his old haircut.
+funereal|adj.|Gloomy and solemn, as if mourning a death.|The locker room was funereal after the loss.
+sepulchral|adj.|Gloomy like a tomb, or deep and hollow in sound.|The empty museum had a sepulchral silence.
+lurid|adj.|Shocking and sensational, or unnaturally bright.|The tabloid printed lurid details of the scandal.
+eldritch|adj.|Weird, eerie, and unsettling.|An eldritch shriek came from the abandoned house.
+baleful|adj.|Threatening harm; menacing.|The cat gave the vacuum a baleful stare.
+portentous|adj.|Ominously significant, or self-importantly solemn.|The portentous music warned us that something was coming.
+numinous|adj.|Having a mysterious, spiritual quality.|The redwood forest felt numinous at dawn.
+ineffable|adj.|Too great or strange to be put into words.|The view from the summit gave her an ineffable calm.
+liminal|adj.|At the boundary between one stage and the next.|The last week of senior year feels strangely liminal.
+inexorable|adj.|Impossible to stop or prevent.|The inexorable rise of sea levels threatens coastal towns.
+ineluctable|adj.|Impossible to avoid or escape.|Bedtime was ineluctable, no matter how I argued.
+immutable|adj.|Never changing or unable to be changed.|My grandmother treats the family recipe as immutable law.
+sacrosanct|adj.|Too important to be changed or questioned.|In our house, Sunday breakfast is sacrosanct.
+inviolable|adj.|Never to be broken or dishonored.|A promise to my sister is inviolable.
+unimpeachable|adj.|Entirely trustworthy; beyond doubt.|The witness had an unimpeachable reputation.
+axiomatic|adj.|Taken as obviously true without proof.|It is axiomatic in our house that dessert needs no reason.
+tautological|adj.|Saying the same thing twice in different words.|‘Free gift’ is tautological, since gifts are always free.
+inchoate|adj.|Not yet fully formed or developed.|I had only an inchoate idea for my college essay.
+incipient|adj.|Just beginning to appear or develop.|She felt an incipient headache at the start of the exam.
+nascent|adj.|Just coming into existence and beginning to grow.|The nascent robotics club has four members and big plans.
+quiescent|adj.|Quiet, inactive, or dormant for now.|The volcano has been quiescent for centuries.
+ostensible|adj.|Stated as true, though perhaps only on the surface.|The ostensible reason for the meeting was free snacks.
+tacit|adj.|Understood or implied without being said.|We had a tacit agreement never to mention the incident.
+tenuous|adj.|Very weak, slight, or poorly supported.|The connection between the two cases is tenuous.
+apocryphal|adj.|Widely told but probably not true.|The apocryphal story says the principal once toured with a band.
+perfunctory|adj.|Done quickly as a duty, without care or interest.|He gave a perfunctory wave and kept walking.
+desultory|adj.|Lacking a plan, purpose, or enthusiasm.|We made desultory conversation while waiting for the bus.
+salient|adj.|Most noticeable or important.|Highlight only the salient points in your summary.
+germane|adj.|Relevant to the subject being discussed.|Keep your comments germane to the reading.
+apposite|adj.|Especially suitable and appropriate.|She found an apposite quote to open her speech.
+auspicious|adj.|Suggesting future success.|Winning the first game was an auspicious start.
+propitious|adj.|Favorable and likely to lead to success.|The calm weather was propitious for the launch.
+fortuitous|adj.|Happening by lucky chance.|A fortuitous wrong turn led us to the best taco stand in town.
+adventitious|adj.|Happening by chance, or coming from outside.|Their adventitious meeting came from a delayed train.
+aleatory|adj.|Depending on chance or luck.|The card game is aleatory; skill hardly matters.
+seminal|adj.|Strongly influencing later work or developments.|That seminal album shaped a whole generation of bands.
+epochal|adj.|Significant enough to mark a new era.|The smartphone was an epochal invention.
+cataclysmic|adj.|Causing sudden, violent upheaval.|A cataclysmic flood reshaped the valley.
+parlous|adj.|Full of danger or uncertainty.|The club's finances are in a parlous state.
+inextricable|adj.|Impossible to separate or escape.|Music is inextricable from her sense of self.
+endemic|adj.|Regularly found in a particular place or group.|Procrastination is endemic among high school seniors.
+rife|adj.|Widespread, especially of something bad.|The forum was rife with spoilers.
+multifarious|adj.|Many and of many different kinds.|Her multifarious interests range from fencing to beekeeping.
+motley|adj.|Made of very different, mismatched parts.|A motley crew of volunteers built the parade float.
+polyglot|adj.|Knowing or using several languages.|The polyglot city has street signs in six languages.
+capricious|adj.|Changing mood or behavior suddenly and unpredictably.|The capricious spring weather ruined three picnics.
+impetuous|adj.|Acting quickly without thinking it through.|My impetuous decision to dye my hair blue had consequences.
+solipsistic|adj.|So self-absorbed that only your own view seems real.|His solipsistic rant assumed everyone cared about his playlist.
+peripatetic|adj.|Traveling from place to place.|My peripatetic childhood meant five schools in six years.
+errant|adj.|Straying from the proper course or standards.|An errant ball smashed the greenhouse window.
+parochial|adj.|Having a narrow, local outlook.|The parochial debate ignored the rest of the world.
+munificent|adj.|Extremely generous.|A munificent donor paid for the new auditorium.
+bumptious|adj.|Loudly and annoyingly full of yourself.|The bumptious new captain gave a speech nobody asked for.
+conciliatory|adj.|Intended to calm anger and restore goodwill.|He sent a conciliatory text after the argument.
+lambent|adj.|Softly glowing, or lightly and brilliantly playful.|Lambent candlelight flickered across the table.
+virtuosic|adj.|Showing exceptional technical skill.|His virtuosic guitar solo earned a standing ovation.
+inimitable|adj.|So unique that it cannot be copied.|Grandma's inimitable laugh carried across the restaurant.
+effete|adj.|Weak and ineffectual from too much refinement.|The effete aristocrats in the novel cannot change a tire.
+cantankerous|adj.|Bad-tempered and argumentative.|The cantankerous old car only starts if you kick it.
+ersatz|adj.|Made as an inferior imitation of something.|The ersatz coffee tasted like burnt toast.
+erstwhile|adj.|Former; in the past.|My erstwhile best friend now sits at another table.
+vexed|adj.|Much debated and difficult, or annoyed.|Phone use in class is a vexed question.
+urbane|adj.|Polished, confident, and courteous.|The urbane host made every guest feel welcome.
+onerous|adj.|Burdensome and difficult to carry out.|Writing three essays in one weekend was onerous.
+fulsome|adj.|Excessively flattering, or generous in amount.|Her fulsome praise for the soggy cake was hard to believe.
+scintillating|adj.|Brilliantly clever, lively, or sparkling.|The scintillating debate kept us talking for days.
+elucidate|verb|To make something clear by explaining it.|Can you elucidate the difference between weather and climate?
+expound|verb|To explain or describe an idea in detail.|The professor expounded on black holes for an hour.
+adumbrate|verb|To outline faintly or hint at what is coming.|The first chapter adumbrates the tragedy to come.
+delineate|verb|To describe or mark something precisely.|The syllabus delineates each assignment's deadline.
+substantiate|verb|To provide evidence that something is true.|You need data to substantiate that claim.
+corroborate|verb|To confirm with additional evidence.|Two witnesses corroborated her story.
+vindicate|verb|To clear of blame or prove right.|The replay vindicated the referee's call.
+exculpate|verb|To show or declare that someone is not guilty.|The security footage exculpated the accused student.
+rebut|verb|To argue that a claim is false.|She rebutted every point in her opponent's speech.
+gainsay|verb|To deny or contradict.|No one could gainsay her years of experience.
+impugn|verb|To challenge someone's honesty or motives.|He impugned my motives for volunteering.
+posit|verb|To put forward an idea as a basis for argument.|The essay posits that boredom drives creativity.
+surmise|verb|To guess from limited evidence.|I surmised from her face that the test went badly.
+extrapolate|verb|To estimate beyond known facts by following a trend.|You can't extrapolate a whole season from one game.
+conflate|verb|To mix two different things together as if they were one.|Don't conflate popularity with quality.
+construe|verb|To interpret in a particular way.|She construed my silence as agreement.
+elide|verb|To leave out or merge, glossing over differences.|The summary elides the messiest parts of the story.
+emend|verb|To correct and improve a text.|The editor emended the article before printing.
+obfuscate|verb|To make something deliberately unclear.|The long memo seemed to obfuscate a simple answer.
+equivocate|verb|To use vague language to avoid committing.|The candidate equivocated on every hard question.
+prevaricate|verb|To avoid the truth by speaking evasively.|Stop prevaricating and tell me who ate my fries.
+dissemble|verb|To hide your true feelings or motives.|He dissembled his nerves behind a big grin.
+tergiversate|verb|To change sides or make evasive statements.|The senator tergiversated so often that no one trusted him.
+temporize|verb|To delay a decision to gain time.|The principal temporized until parents stopped asking.
+vacillate|verb|To waver between options or opinions.|I vacillated between two colleges for weeks.
+dither|verb|To be nervously indecisive.|We dithered so long that the movie sold out.
+demur|verb|To raise an objection or show reluctance.|She demurred when asked to give the speech.
+cavil|verb|To raise petty, unnecessary objections.|He caviled about the font size on the flyer.
+quibble|verb|To argue about trivial details.|Let's not quibble over who sits where.
+belabor|verb|To explain or argue more than needed.|I won't belabor the point; just turn in your forms.
+bloviate|verb|To talk at length in a pompous, empty way.|The guest bloviated about leadership for an hour.
+pontificate|verb|To give opinions in a pompous, know-it-all way.|My uncle pontificates about football every holiday.
+expatiate|verb|To speak or write at great length on a topic.|She expatiated on the history of every painting.
+harangue|verb|To lecture someone in a loud, aggressive way.|The coach harangued us after the sloppy loss.
+fulminate|verb|To protest loudly and angrily.|Fans fulminated online about the trade.
+inveigh|verb|To speak or write bitterly against something.|The columnist inveighed against standardized testing.
+remonstrate|verb|To protest or object forcefully.|We remonstrated with the bus driver about the skipped stop.
+castigate|verb|To criticize or punish severely.|The report castigated the company for its safety record.
+excoriate|verb|To criticize with great severity.|Critics excoriated the remake as soulless.
+lambaste|verb|To criticize harshly.|The review lambasted the band's new album.
+upbraid|verb|To scold or criticize sharply.|She upbraided her brother for using all the hot water.
+berate|verb|To scold angrily and at length.|The manager berated the cashier in front of customers.
+admonish|verb|To warn or scold firmly.|The librarian admonished us for laughing too loudly.
+pillory|verb|To ridicule or attack publicly.|The internet pilloried the brand for its tone-deaf ad.
+lampoon|verb|To mock publicly through satire.|The comedy show lampooned the school board.
+traduce|verb|To speak badly of someone and damage their reputation.|He traduced his former coach in a podcast interview.
+vilify|verb|To speak or write about someone in an abusive way.|The tabloids vilified the referee after the final.
+malign|verb|To say unfair, harmful things about someone.|Rumors maligned her for weeks before the truth came out.
+denigrate|verb|To unfairly criticize or belittle.|Don't denigrate the freshmen; we were all new once.
+disparage|verb|To speak of as having little value.|He disparaged her art as ‘just doodles.’
+besmirch|verb|To damage someone's reputation.|The scandal besmirched the team's proud history.
+sully|verb|To stain or damage the purity of.|One bad call sullied an otherwise great game.
+decry|verb|To publicly denounce.|Activists decried the plan to close the library.
+rail|verb|To complain bitterly or angrily.|He railed against the new parking fees.
+skewer|verb|To criticize or mock sharply.|The comedian skewered both candidates equally.
+repudiate|verb|To reject or deny the validity of.|The scientist repudiated the misleading headline.
+recant|verb|To publicly withdraw a statement or belief.|The witness recanted her earlier testimony.
+abjure|verb|To solemnly reject a belief or claim.|He abjured his old habits after the health scare.
+forswear|verb|To give up or renounce firmly.|Every exam week, I forswear energy drinks for good.
+abrogate|verb|To formally abolish or cancel.|The new treaty abrogated the old trade agreement.
+rescind|verb|To cancel or take back officially.|The college rescinded his offer after the incident.
+gird|verb|To prepare yourself for something difficult.|We girded ourselves for a week of back-to-back finals.
+contravene|verb|To break a law or rule.|The parking lot party contravened school policy.
+flout|verb|To openly disregard a rule or convention.|They flouted the dress code with matching capes.
+obviate|verb|To remove a need or difficulty in advance.|A shared calendar obviates endless group texts.
+preclude|verb|To make something impossible in advance.|The injury precludes her from playing this season.
+forestall|verb|To prevent by acting first.|We left early to forestall the traffic.
+stymie|verb|To block or hinder progress.|A missing permission slip stymied our field trip.
+hamstring|verb|To severely limit someone's effectiveness.|A tiny budget can hamstring an entire theater department.
+circumvent|verb|To find a way around a rule or obstacle.|Students circumvented the filter with a proxy.
+supersede|verb|To take the place of something older.|The new edition supersedes the old textbook.
+supplant|verb|To replace, often by force or scheming.|Streaming has supplanted cable in most homes.
+usurp|verb|To seize power or a position illegally.|The younger brother usurped the throne.
+arrogate|verb|To claim something without having the right.|He arrogated credit for the whole project.
+kvetch|verb|To complain persistently.|My brother kvetched about the drive the whole way there.
+wrest|verb|To pull away by force or effort.|She wrested the ball from the defender.
+purloin|verb|To steal, usually something small.|Someone purloined my favorite pen again.
+filch|verb|To steal something casually.|He filched a cookie from the tray on his way out.
+abscond|verb|To leave secretly, often with something not yours.|The cat absconded with the turkey leg.
+bilk|verb|To cheat someone out of money.|The scam bilked retirees out of their savings.
+cozen|verb|To trick or deceive.|He cozened his way into the VIP section.
+hoodwink|verb|To deceive or trick.|The April Fools' prank hoodwinked half the school.
+hornswoggle|verb|To swindle or bamboozle.|We got hornswoggled into buying fake concert tickets.
+finagle|verb|To obtain through cleverness or trickery.|She finagled two extra days on the deadline.
+inveigle|verb|To persuade someone through flattery or deception.|He inveigled me into joining the dance committee.
+cajole|verb|To persuade with flattery or gentle coaxing.|We cajoled Dad into ordering pizza.
+wheedle|verb|To coax someone with flattery or sweet talk.|My brother wheedled ten dollars out of Grandma.
+blandish|verb|To coax with flattery.|She blandished the teacher with compliments before asking for a curve.
+beguile|verb|To charm, sometimes in a deceptive way.|The magician beguiled the audience with misdirection.
+collude|verb|To cooperate secretly for a dishonest purpose.|The two companies colluded to fix prices.
+connive|verb|To secretly plot or allow wrongdoing.|They connived to get the class trip moved to the beach.
+foment|verb|To stir up trouble or conflict.|Anonymous accounts fomented unrest online.
+abet|verb|To help or encourage wrongdoing.|His friend abetted the prank by holding the ladder.
+dragoon|verb|To force someone into doing something.|I was dragooned into playing a tree in the school play.
+goad|verb|To provoke or urge someone into action.|They goaded him into jumping in the cold lake.
+nettle|verb|To irritate or annoy.|Her smug tone nettled everyone in the meeting.
+rankle|verb|To cause lasting irritation or resentment.|Losing on a technicality still rankles.
+discomfit|verb|To make someone uneasy or embarrassed.|The unexpected question discomfited the speaker.
+flummox|verb|To completely confuse.|The last question flummoxed the entire class.
+transmogrify|verb|To transform in a surprising or magical way.|The art club transmogrified the gym into a jungle.
+mollify|verb|To soothe someone's anger or anxiety.|Free pizza mollified the angry crowd.
+placate|verb|To make someone less angry by giving in a little.|She placated her brother with the last slice.
+propitiate|verb|To win favor by doing something pleasing.|We propitiated the cat with extra treats.
+assuage|verb|To make an unpleasant feeling less intense.|A hug assuaged his fear before surgery.
+allay|verb|To reduce or put to rest a fear or doubt.|The doctor allayed my worries about the scan.
+palliate|verb|To ease symptoms, or make a fault seem less bad.|Ice palliated the pain but did not heal the ankle.
+ameliorate|verb|To make a bad situation better.|Extra buses ameliorated the morning crowding.
+attenuate|verb|To weaken or reduce in strength.|The thick walls attenuated the noise from the street.
+buttress|verb|To support or strengthen.|She buttressed her argument with three studies.
+embolden|verb|To give someone courage.|The crowd's cheers emboldened the nervous singer.
+burnish|verb|To polish, or to improve a reputation.|He volunteered to burnish his college application.
+edify|verb|To improve someone morally or intellectually.|The documentary was meant to edify, not entertain.
+inculcate|verb|To instill an idea through repeated teaching.|My parents inculcated a love of reading early.
+exhort|verb|To strongly urge or encourage.|The coach exhorted us to leave everything on the field.
+enjoin|verb|To order or urge someone to do something.|The rules enjoin players to shake hands after each match.
+adjure|verb|To urge or command solemnly.|She adjured us to tell the truth.
+apprise|verb|To inform or tell someone about something.|Please apprise me of any schedule changes.
+aver|verb|To state confidently as fact.|He averred that he had never seen the missing phone.
+opine|verb|To state an opinion.|Everyone opined about the finale online.
+augur|verb|To be a sign of a future outcome.|A strong preseason augurs well for the team.
+portend|verb|To be a warning sign of something to come.|Dark clouds portended a ruined picnic.
+prognosticate|verb|To predict or forecast.|Analysts prognosticated a landslide that never came.
+cogitate|verb|To think deeply and carefully.|She cogitated on the riddle all afternoon.
+ruminate|verb|To think deeply about something, often repeatedly.|He ruminated on what he should have said.
+plumb|verb|To explore something fully, down to its depths.|The novel plumbs the depths of teenage loneliness.
+winnow|verb|To narrow down by removing what is unwanted.|We winnowed fifty ideas down to three.
+cull|verb|To select from a group, or remove the weakest.|She culled the best photos for the yearbook.
+garner|verb|To gather or earn.|Her speech garnered a standing ovation.
+coalesce|verb|To come together into one whole.|Scattered ideas coalesced into a clear plan.
+subsume|verb|To include within something larger.|The chess club was subsumed into the games society.
+cleave|verb|To split apart, or to cling closely.|The axe cleaved the log in one stroke.
+efface|verb|To erase, or to make yourself seem unimportant.|Time had effaced the names on the old stone.
+expunge|verb|To erase or remove completely.|The court expunged the charge from his record.
+extirpate|verb|To destroy completely, roots and all.|The gardener vowed to extirpate every weed.
+raze|verb|To completely destroy a building or town.|They razed the old mall to build apartments.
+eviscerate|verb|To gut, or to drain of essential content.|The edits eviscerated the original story.
+jettison|verb|To throw away or abandon.|We jettisoned the plan after the storm forecast.
+desiccate|verb|To dry out completely.|The sun desiccated the forgotten orange slices.
+dissipate|verb|To scatter, fade away, or waste.|The fog dissipated by noon.
+languish|verb|To weaken or suffer from neglect.|The bill languished in committee for years.
+ossify|verb|To harden into a rigid, unchanging form.|Without new members, the club's traditions ossified.
+fritter|verb|To waste time or money bit by bit.|I frittered away Saturday watching clips.
+gallivant|verb|To wander from place to place for fun.|They gallivanted around the city all summer.
+perambulate|verb|To walk around or through a place.|We perambulated the campus during the tour.
+lollygag|verb|To waste time by dawdling.|Stop lollygagging; the bus leaves in five minutes.
+skulk|verb|To move around secretly or lurk.|A raccoon skulked behind the dumpster.
+ensconce|verb|To settle comfortably or securely.|She ensconced herself in the library's back corner.
+sequester|verb|To isolate or set apart.|The jury was sequestered during the trial.
+recuse|verb|To step aside from a decision over a conflict of interest.|The judge recused herself because she knew the defendant.
+accede|verb|To agree to a request or demand.|The school acceded to student demands for a longer lunch.
+capitulate|verb|To stop resisting and give in.|After an hour of begging, Mom capitulated.
+acquiesce|verb|To accept something reluctantly without protest.|He acquiesced to the new seating chart.
+kowtow|verb|To act with excessive submissiveness.|Refuse to kowtow to the loudest voice in the room.
+deign|verb|To do something you consider beneath you.|The cat deigned to sit on my lap for a minute.
+abase|verb|To lower in dignity or esteem.|He refused to abase himself by begging for votes.
+cosset|verb|To pamper or protect too much.|The star player was cosseted by the coaching staff.
+mollycoddle|verb|To overprotect or pamper.|Stop mollycoddling him; he can make his own lunch.
+regale|verb|To entertain with stories.|Grandpa regaled us with tales of his band days.
+lionize|verb|To treat someone as a celebrity.|The town lionized the teenage inventor.
+extol|verb|To praise enthusiastically.|The review extolled the restaurant's dumplings.
+hobnob|verb|To mix socially, especially with important people.|At the gala, she hobnobbed with senators.
+kibitz|verb|To offer unwanted advice, especially while watching.|Spectators kibitzed over our chess game.
+commiserate|verb|To share in someone's sorrow or frustration.|We commiserated over our terrible schedules.
+glower|verb|To stare angrily.|She glowered at the person who spoiled the ending.
+quail|verb|To shrink back in fear.|The new players quailed under the coach's glare.
+caterwaul|verb|To make a shrill, howling noise.|Cats caterwauled outside my window all night.
+gesticulate|verb|To make dramatic gestures while speaking.|He gesticulated wildly while describing the fish.
+proffer|verb|To hold out or offer for acceptance.|She proffered a cookie as a peace offering.
+vouchsafe|verb|To grant or reveal, as if doing a favor.|The coach vouchsafed one word: ‘Better.’
+proscribe|verb|To forbid, especially by law.|The rules proscribe phones during exams.
+promulgate|verb|To make widely known or officially announce.|The district promulgated a new attendance policy.
+engender|verb|To cause or give rise to.|The new policy engendered a lot of debate.
+foist|verb|To force something unwanted on someone.|They foisted the cleanup duty on the freshmen.
+embroil|verb|To involve deeply in a conflict.|The club got embroiled in a fight over funding.
+encroach|verb|To intrude gradually on someone's space or rights.|Homework encroached on every weekend.
+waylay|verb|To stop someone unexpectedly, or ambush.|A friend waylaid me on the way to class.
+parry|verb|To deflect a blow, question, or criticism.|She parried every question with a joke.
+spurn|verb|To reject with contempt.|He spurned every offer of help.
+rebuff|verb|To bluntly reject an offer or advance.|The cat rebuffed every attempt at petting.
+quash|verb|To suppress or reject firmly.|The principal quashed the rumor about a four-day week.
+fetter|verb|To restrict someone's freedom.|Endless rules fettered the creative team.
+impute|verb|To attribute a fault or quality to someone.|Don't impute bad motives to an honest mistake.
+ascribe|verb|To credit something to a particular cause.|She ascribed her success to stubbornness.
+redound|verb|To contribute to someone's credit or discredit.|The win redounds to the coach's credit.
+expiate|verb|To make amends for a wrong.|He expiated his rudeness by baking her cookies.
+disabuse|verb|To free someone from a mistaken belief.|Let me disabuse you of the idea that finals are easy.
+inure|verb|To make someone used to something unpleasant.|Years of early practice inured her to cold mornings.
+imbibe|verb|To drink, or to absorb ideas.|She imbibed her grandmother's love of jazz.
+eschew|verb|To deliberately avoid.|She eschews social media during finals.
 relinquish|verb|To give up control or possession.|He was reluctant to relinquish the window seat.
+defenestrate|verb|To throw someone or something out of a window.|In frustration, I nearly defenestrated my phone.
+festoon|verb|To decorate with chains of ornaments or garlands.|We festooned the hallway with streamers for homecoming.
+grandstand|verb|To act in a showy way to impress onlookers.|The senator grandstanded for the cameras.
+bandy|verb|To pass around or mention casually.|The word ‘genius’ gets bandied about too often.
+descry|verb|To catch sight of something distant.|From the summit we could descry the ocean.
+burgeon|verb|To grow or expand rapidly.|The club's membership burgeoned after the viral video.
+vitiate|verb|To spoil or weaken the effect of.|One error vitiated the whole experiment.
+sate|verb|To fully satisfy an appetite or desire.|Nothing could sate his curiosity about space.
+enervate|verb|To drain someone of energy.|The humid weather enervated the whole team.
+bespeak|verb|To be evidence of; to suggest.|His calm answers bespeak years of practice.
+belie|verb|To give a false impression of something.|His calm voice belied his nerves.
+acumen|noun|Sharpness in judgment, especially in a specific field.|Her business acumen turned a bake sale into a profit machine.
+aplomb|noun|Confident poise in a hard situation.|She handled the microphone failure with aplomb.
+sangfroid|noun|Coolness and composure under pressure.|The goalie showed remarkable sangfroid during penalties.
+gravitas|noun|Serious, dignified weight that earns respect.|Her low voice gave the speech real gravitas.
+verve|noun|Energy, enthusiasm, and spirit.|The band played with such verve that people danced.
+brio|noun|Vigor and liveliness of style.|She delivered the monologue with brio.
+panache|noun|Stylish flair and confidence.|He wears his grandfather's hat with panache.
+sprezzatura|noun|Effortless-looking grace that hides real effort.|Her sprezzatura on stage hid months of rehearsal.
+gumption|noun|Practical initiative and resourcefulness.|It took gumption to email the author directly.
+mettle|noun|The courage to cope well with difficulty.|The final set tested her mettle.
+alacrity|noun|Brisk, cheerful eagerness.|He accepted the free tickets with alacrity.
+temerity|noun|Reckless boldness.|He had the temerity to ask the principal for a later start time.
+effrontery|noun|Shameless boldness or nerve.|She had the effrontery to blame me for her mistake.
+chutzpah|noun|Bold, sometimes shameless nerve.|It took chutzpah to ask for an extension on the extension.
+schadenfreude|noun|Pleasure taken in someone else's misfortune.|I felt a twinge of schadenfreude when the bully tripped.
+ennui|noun|Listless boredom and dissatisfaction.|A deep ennui settled over the class in late May.
+malaise|noun|A vague feeling of unease or illness.|A general malaise hung over the town after the factory closed.
+anomie|noun|A breakdown of social norms and shared values.|The novel captures the anomie of a lonely suburb.
+torpor|noun|A state of sluggish inactivity.|The heat wave left the town in a torpor.
+lassitude|noun|Physical or mental weariness.|A strange lassitude kept me in bed all weekend.
+akrasia|noun|Acting against your own better judgment.|My akrasia kicks in whenever an essay is due tomorrow.
+bonhomie|noun|Cheerful friendliness.|The bonhomie at the reunion was contagious.
+largesse|noun|Generosity in giving gifts or money.|Thanks to an alum's largesse, the band got new uniforms.
+probity|noun|Strong moral honesty and integrity.|The treasurer's probity was never in question.
+rectitude|noun|Morally correct behavior or thinking.|Her rectitude made her the obvious choice for judge.
+chicanery|noun|Trickery used to achieve a goal.|The election was marred by chicanery.
+subterfuge|noun|Deceit used to achieve a goal.|The surprise party required weeks of subterfuge.
+artifice|noun|Clever trickery or skill used to deceive.|The magician's artifice fooled even the skeptics.
+legerdemain|noun|Sleight of hand, or deceptive cleverness.|The budget's legerdemain hid the real costs.
+machination|noun|A crafty plot or scheme.|The novel follows the machinations of a royal court.
+skulduggery|noun|Underhanded, dishonest behavior.|There was some skulduggery in the student council vote.
+malfeasance|noun|Wrongdoing, especially by a public official.|The mayor was investigated for malfeasance.
+sinecure|noun|A position that pays well but requires little work.|His job at the family firm was a sinecure.
+cabal|noun|A secret group plotting together.|A cabal of seniors planned the prank for months.
+coterie|noun|A small, exclusive group with shared interests.|She belonged to a coterie of poets who met on Fridays.
+cognoscenti|noun|People with expert knowledge in a field.|The cognoscenti say this is the best ramen in town.
+demagogue|noun|A leader who wins support by exploiting emotion and prejudice.|The demagogue blamed every problem on outsiders.
+toady|noun|Someone who flatters others to gain favor.|The boss surrounded herself with toadies.
+gadfly|noun|A person who provokes others through persistent criticism.|The town gadfly speaks at every council meeting.
+polymath|noun|A person with expert knowledge in many fields.|The polymath painted, composed, and studied physics.
+autodidact|noun|A self-taught person.|An autodidact, she learned to code from library books.
+dilettante|noun|Someone who dabbles in an interest without real commitment.|He is a dilettante who quits every hobby after a month.
+neophyte|noun|A beginner in a skill or field.|As a chess neophyte, I lost in six moves.
+doyen|noun|The most respected or senior person in a field.|She is the doyen of local jazz drummers.
+paragon|noun|A perfect example of a quality.|My grandmother was a paragon of patience.
+apotheosis|noun|The highest point or perfect example of something.|This dish is the apotheosis of comfort food.
+nadir|noun|The lowest point.|The winless season was the nadir of the team's history.
+apogee|noun|The highest or farthest point.|The empire reached its apogee under its third king.
+quintessence|noun|The purest or most perfect example of something.|That diner is the quintessence of small-town charm.
+denouement|noun|The final part of a story, where things are resolved.|The denouement tied up every loose end.
+coda|noun|A concluding section or final passage.|The film's coda shows the characters ten years later.
+peroration|noun|The closing part of a speech, meant to inspire.|Her peroration brought the audience to its feet.
+aporia|noun|An unresolvable contradiction or puzzle.|The debate ended in aporia, with neither side able to win.
+sophistry|noun|Clever but deceptive reasoning.|His argument was pure sophistry dressed up as logic.
+casuistry|noun|Clever but unsound reasoning, especially about morals.|Calling it ‘borrowing’ was casuistry.
+corollary|noun|A natural result or consequence.|Worse grades are a predictable corollary of less sleep.
+canard|noun|A false or unfounded rumor.|The canard about free tuition spread quickly.
+calumny|noun|A false statement meant to damage someone's reputation.|She sued over the calumny printed in the paper.
+obloquy|noun|Strong public criticism or disgrace.|The referee faced obloquy after the controversial call.
+opprobrium|noun|Harsh public criticism or scorn.|The brand faced opprobrium after the scandal.
+approbation|noun|Approval or praise.|The project earned the approbation of the judges.
+encomium|noun|A speech or piece of writing that praises highly.|The retiring teacher received a heartfelt encomium.
+diatribe|noun|A bitter verbal attack.|He launched into a diatribe about homework.
+screed|noun|A long, angry piece of writing.|She posted a screed about the cafeteria food.
+polemic|noun|A strong written or spoken attack on an opinion.|Her essay was a polemic against standardized tests.
+invective|noun|Insulting or abusive language.|The comments section filled with invective.
+rancor|noun|Bitter, long-lasting resentment.|Years later, there was still rancor over the trade.
+animus|noun|Hostility or ill feeling.|There is no personal animus behind my criticism.
+umbrage|noun|Offense or annoyance.|She took umbrage at being called ‘cute.’
+pique|noun|Irritation from wounded pride.|In a fit of pique, he left the group chat.
+chagrin|noun|Annoyance or embarrassment at a failure.|To my chagrin, I tripped on the stage stairs.
+contretemps|noun|A minor dispute or unlucky mishap.|A contretemps over seating delayed the dinner.
+fracas|noun|A noisy disturbance or quarrel.|A fracas broke out in the parking lot after the game.
+imbroglio|noun|A complicated, embarrassing situation.|The yearbook imbroglio involved three misspelled names.
+brouhaha|noun|A noisy fuss over something minor.|The brouhaha over the mascot redesign lasted weeks.
+kerfuffle|noun|A commotion, usually over a disagreement.|There was a kerfuffle over who would sit in front.
+maelstrom|noun|A situation of violent turmoil.|The newsroom was a maelstrom on election night.
+morass|noun|A complicated situation that is hard to escape.|The project sank into a morass of paperwork.
+miasma|noun|An unpleasant, heavy atmosphere or smell.|A miasma of gym socks hung over the locker room.
+pall|noun|A gloomy, heavy atmosphere.|The news cast a pall over the celebration.
+penumbra|noun|A partly shaded outer area, or a fuzzy border zone.|The question sits in a legal penumbra.
+palimpsest|noun|Something reused but still showing traces of its past.|The old city is a palimpsest of different eras.
+pastiche|noun|A work that imitates or mixes other styles.|The movie is a pastiche of 1980s horror films.
+bricolage|noun|Something made from whatever materials are at hand.|Her costume was a bricolage of thrift store finds.
+farrago|noun|A confused mixture.|The plan was a farrago of half-baked ideas.
+surfeit|noun|An excessive amount of something.|A surfeit of candy left us sick after Halloween.
+dearth|noun|A lack or scarcity.|There is a dearth of good parking near the school.
+paucity|noun|The presence of something in only small amounts.|The paucity of evidence weakened the case.
+modicum|noun|A small quantity.|Show a modicum of respect for the substitute.
+penchant|noun|A strong liking or habit.|She has a penchant for dramatic entrances.
+predilection|noun|A preference or special liking.|He has a predilection for spicy food.
+proclivity|noun|A natural tendency toward something.|My dog has a proclivity for stealing socks.
+foible|noun|A minor weakness or quirk.|His habit of humming is a lovable foible.
+peccadillo|noun|A small, relatively harmless sin.|Eating dessert first is a forgivable peccadillo.
+neologism|noun|A newly coined word or expression.|‘Doomscrolling’ was a neologism not long ago.
+eggcorn|noun|A misheard phrase that still sounds like it makes sense.|Writing ‘for all intensive purposes’ is a classic eggcorn.
+dysphemism|noun|A harsh term used in place of a neutral one.|‘Mystery meat’ is a dysphemism for cafeteria lunch.
+litotes|noun|Understatement made by denying the opposite.|Saying a test was ‘not easy’ is litotes for ‘brutal.’
+synecdoche|noun|A figure of speech using a part to stand for the whole.|Calling a car your ‘wheels’ is synecdoche.
+verisimilitude|noun|The appearance of being true or real.|The historical details give the novel verisimilitude.
+bathos|noun|A sudden, absurd drop from the serious to the trivial.|The epic speech ended in bathos when he sneezed.
+leitmotif|noun|A recurring theme or musical phrase.|Rain is the novel's leitmotif.
+oeuvre|noun|The complete body of an artist's work.|Her oeuvre spans painting, film, and poetry.
+juvenilia|noun|Works produced by an artist in youth.|My middle school poems are juvenilia best left unread.
+marginalia|noun|Notes written in the margins of a book.|The used textbook was full of funny marginalia.
+ephemera|noun|Things meant to be used or valued only briefly.|The museum collects concert tickets and other ephemera.
+reverie|noun|A pleasant daydream.|The bell snapped me out of my reverie.
+petrichor|noun|The earthy smell after rain falls on dry ground.|The petrichor after the storm smelled like summer camp.
+susurrus|noun|A soft whispering or rustling sound.|The susurrus of the crowd faded as the lights dimmed.
+gloaming|noun|The soft half-light of dusk.|We walked home in the gloaming.
+frisson|noun|A sudden thrill of excitement or fear.|A frisson ran through the crowd as the lights went out.
+nostrum|noun|A favorite but questionable remedy or solution.|Every candidate had a nostrum for the economy.
+desideratum|noun|Something needed or wanted.|A quiet place to study is my chief desideratum.
+wherewithal|noun|The money or resources needed for something.|We lacked the wherewithal to rent the venue.
+emolument|noun|A salary, fee, or profit from employment.|The internship offered no emolument except experience.
+perquisite|noun|A special benefit beyond regular pay; a perk.|A free lunch was the job's best perquisite.
+lagniappe|noun|A small extra gift given with a purchase.|The baker added a cookie as lagniappe.
+boondoggle|noun|A wasteful project of little value.|The new stadium was a costly boondoggle.
+tchotchke|noun|A small, cheap trinket or knickknack.|Her desk is covered in tchotchkes from every trip.
+detritus|noun|Debris or leftover waste.|The detritus of the party covered the lawn.
+flotsam|noun|Floating wreckage, or odds and ends.|Flotsam washed up on the beach after the storm.
+dross|noun|Something worthless; rubbish.|Sift through the dross to find the good videos.
+minutiae|noun|Small, precise, or trivial details.|We got lost in the minutiae of the dress code.
+fiefdom|noun|An area under someone's personal control.|The coach runs the gym like his own fiefdom.
+bailiwick|noun|A person's area of skill, interest, or authority.|Spreadsheets are not really my bailiwick.
+purview|noun|The range of someone's authority or concern.|Parking is outside the student council's purview.
+ambit|noun|The scope or extent of something.|The investigation widened its ambit.
+gamut|noun|The complete range of something.|Her emotions ran the gamut from joy to despair.
+panoply|noun|A complete or impressive collection.|The kitchen holds a panoply of gadgets.
+interregnum|noun|A gap between one ruler or regime and the next.|The club drifted during the interregnum between presidents.
+lacuna|noun|A gap or missing part.|The diary has a lacuna covering the war years.
+caesura|noun|A break or pause, especially in a line of poetry.|Read the line aloud and pause at the caesura.
+reprieve|noun|A temporary relief from something unpleasant.|The snow day gave us a reprieve from the test.
+sojourn|noun|A temporary stay.|After a brief sojourn in Paris, she returned home.
+peregrination|noun|A long journey, especially on foot.|Our peregrinations through the city lasted all day.
+denizen|noun|An inhabitant or regular of a place.|The denizens of the library know every quiet corner.
+flaneur|noun|Someone who strolls about to observe city life.|The flaneur wandered the streets watching people.
+raconteur|noun|A skilled storyteller.|My uncle, a natural raconteur, held the whole table.
+interlocutor|noun|A person you are in conversation with.|My interlocutor kept checking his phone.
+doppelganger|noun|A double or look-alike of a living person.|I met my doppelganger at the mall.
+cynosure|noun|The center of attention or admiration.|The new puppy was the cynosure of the party.
+lodestar|noun|A guiding principle or source of direction.|Curiosity has always been her lodestar.
+apostate|noun|A person who abandons a belief or cause.|He's an apostate who switched football teams.
+curmudgeon|noun|A bad-tempered, grumpy person, often older.|The curmudgeon next door hates leaf blowers.
+misanthrope|noun|A person who dislikes humankind.|Even a misanthrope would love this puppy.
+troglodyte|noun|A cave dweller, or someone stubbornly out of date.|My dad is a troglodyte who still prints out maps.
+rapscallion|noun|A mischievous person, often playful.|The little rapscallion hid my keys again.
+scofflaw|noun|Someone who flouts the law, especially minor rules.|The scofflaw parked in the fire lane again.
+miscreant|noun|A person who has behaved badly or illegally.|The miscreants who egged the house were caught on camera.
+reprobate|noun|An unprincipled person.|The novel's charming reprobate is the best character.
+mountebank|noun|A swindler who cons people with tricks.|The mountebank sold miracle cures from his van.
+shill|noun|Someone who poses as a customer to lure others.|The ‘satisfied customer’ was a shill.
+interloper|noun|Someone who intrudes where they do not belong.|The interloper crashed our study group.
+arriviste|noun|An ambitious newcomer, often a social climber.|The arriviste tried too hard to impress.
+poseur|noun|Someone who pretends to be what they are not.|He's a poseur who only reads book summaries.
+popinjay|noun|A vain, talkative person.|The popinjay spent the party admiring himself.
+gourmand|noun|A person who loves food, sometimes to excess.|The gourmand ordered every dessert on the menu.
+logophile|noun|A lover of words.|A true logophile, she reads the dictionary for fun.
+kleptocracy|noun|A government whose leaders steal from the nation.|The kleptocracy drained the country's wealth.
+gerontocracy|noun|Rule by a group of elderly people.|Critics call the senate a gerontocracy.
+anagnorisis|noun|The moment a character discovers the truth.|The anagnorisis comes when she reads the letter.
+hamartia|noun|A fatal flaw leading to a hero's downfall.|Pride is the hero's hamartia.
+apophenia|noun|The tendency to see patterns in random things.|Conspiracy theories thrive on apophenia.
+pareidolia|noun|Seeing faces or shapes in random objects.|Pareidolia makes the outlet look like a surprised face.
+gestalt|noun|A whole that is more than the sum of its parts.|The gestalt of the album matters more than any single song.
+simulacrum|noun|An imitation or representation, often a poor one.|The theme park is a simulacrum of a medieval village.
+bellwether|noun|Something that signals future trends.|The state is a bellwether for national elections.
+confluence|noun|A coming together of people, ideas, or things.|The festival was a confluence of music and food.
+cachet|noun|Prestige or distinction.|The brand has a certain cachet among skaters.
+snollygoster|noun|A clever, unscrupulous person, especially in politics.|The snollygoster promised every voter something different.
+quidnunc|noun|A nosy person who always wants the latest gossip.|The class quidnunc knew about the breakup before we did.
+kakistocracy|noun|Government by the least qualified or worst people.|By March, the student council felt like a kakistocracy.
+collywobbles|noun|A nervous, fluttery feeling in the stomach.|I always get the collywobbles before a big recital.
 `;
-
-// Keep the daily edition a step above everyday vocabulary. The underlying
-// rows stay easy to revise, while this cut is the active editorial selection.
-const tooFamiliar = new Set(`
-plucky accomplished moderate vibrant vivid resourceful adaptable versatile nimble agile
-proficient diligent thorough methodical systematic purposeful intentional considered restrained
-modest reserved tactful diplomatic polished elegant refined pristine serene tranquil lush
-aromatic fragrant delectable lavish plentiful abundant ample fertile fruitful promising
-timely pertinent pivotal profound daunting exhaustive comprehensive expansive far-reaching
-ambitious aspirational visionary imaginative inventive novel original distinctive iconic
-renowned acclaimed distinguished exemplary commendable admirable noble charitable lenient
-forgiving accommodating collaborative communal inclusive mutual cohesive harmonious compatible
-complementary
-contrast clarify elaborate validate contest evaluate assess weigh reflect reconsider adapt
-improvise streamline refine polish nurture reinforce mobilize restore soothe negotiate
-compromise remedy salvage revisit
-insight perspective curiosity hindsight foresight integrity compassion clarity texture irony
-tradeoff dilemma refuge oasis milestone prototype anecdote metaphor analogy idiom
-nuanced deliberate expressive measured buoyant amiable gracious cordial adept immaculate apt
-distinguish differentiate illuminate articulate ponder muse reassess optimize hone foster
-invigorate revitalize rejuvenate replenish defuse deescalate broker concede
-recoup reclaim reimagine repurpose reinterpret poise
-rapport affinity consensus accord momentum trajectory precedent premise inference intuition
-skepticism resilience resolve conviction humility civility tact precision subtlety implication
-respite solace flair aesthetic motif persona benchmark
-`.trim().split(/\s+/));
 
 export const WORDS = rows.trim().split('\n').map((line) => {
   const [word, part, meaning, example] = line.split('|');
   return { word, part, meaning, example };
-}).filter(({ word }) => !tooFamiliar.has(word));
+});

@@ -38,7 +38,7 @@ function orderBank(bank) {
 
   // The opening edition sets the tone; the remaining entries keep their
   // deterministic shuffled order and still appear before any repeat.
-  const openingWords = ['equanimous', 'quixotic', 'acumen', 'elucidate', 'ineffable'];
+  const openingWords = ['equanimous', 'mellifluous', 'acumen', 'elucidate', 'ineffable'];
   const opening = openingWords.map((word) => bank.findIndex((entry) => entry.word === word)).filter((index) => index >= 0);
   const openingSet = new Set(opening);
   return [...opening, ...order.filter((index) => !openingSet.has(index))];

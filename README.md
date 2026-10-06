@@ -9,7 +9,7 @@ npm ci
 npm run dev
 ```
 
-`npm test` checks the date and review rules plus the 324-entry active word bank. `npm run build` creates the deployable `dist/` folder.
+`npm test` checks the date and review rules plus the 670-entry word bank. `npm run build` creates the deployable `dist/` folder.
 
 For browser regression checks, run `npx playwright install chromium webkit` once, then `npm run test:mobile`. These check that all five entries stay visible after the entrance animation and scrolling in Chromium and Safari's WebKit engine, at phone, tablet, and desktop widths. They also cover reduced motion, enlarged text, review-marker overlap, and a daily edition change.
 
@@ -29,4 +29,4 @@ On each load, Anime.js reveals the lead word and then the supporting entries wit
 
 The Vite build uses relative paths, so it works at both a user site and a repository site URL. Daily word changes happen in the browser; no scheduled GitHub Action is required.
 
-To edit the bank, update the pipe-separated rows in `src/words.js`. Each row contains the word, part of speech, meaning, and example. The active selection also excludes the simpler terms listed near the end of that file. Run `npm test` before pushing.
+To edit the bank, update the pipe-separated rows in `src/words.js`. Each row contains the word, part of speech, meaning, and example. The bank stays above everyday vocabulary and leaves out words named for people, places, or events, such as *Freudian* or *quixotic*; `tests/words.test.js` blocks known namesakes and familiar words. Run `npm test` before pushing.
