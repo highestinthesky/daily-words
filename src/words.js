@@ -681,32 +681,15 @@ collywobbles|noun|A nervous, fluttery feeling in the stomach.|I always get the c
 // as ‘denizen’ or more in English text. They leave the bank from the second
 // edition on, but stay in the first bank above for history.
 const retired = new Set(`
-accede acquiesce acrimonious acumen admonish allay ambit ameliorate anachronistic animus aplomb
-apocryphal apogee apostate apprise arcane artifice ascetic ascribe assuage attenuate augur
-auspicious axiomatic bandy beguile beleaguered belie berate bespoke blithe bombastic boondoggle
-brouhaha brusque burgeon burnish buttress cabal cajole callow cantankerous capitulate capricious
-cataclysmic chagrin chutzpah circumspect circumvent cleave coalesce coda cogent collude conciliatory
-conflate confluence connive construe contrite corollary corroborate coterie craven cull curmudgeon
-dauntless dearth decry delineate demagogue denigrate denizen denouement detritus diatribe
-disingenuous disparage dissipate doppelganger doughty dragoon droll effervescent effusive elucidate
-embolden embroil emolument encroach endemic engender ennui ensconce ephemera errant ersatz erstwhile
-erudite eschew expound expunge extrapolate facetious fallacious fastidious febrile feckless flummox
-foible forestall fortuitous fracas fritter gamut garner garrulous gauche gestalt glib goad gourmand
-grandstand gravitas hamstring hegemonic hirsute histrionic hoodwink immutable imperious impetuous
-implacable impudent incandescent incipient incisive incorrigible indefatigable indomitable ineffable
-inexorable inimitable inscrutable insipid interloper intractable invective jaunty jettison kerfuffle
-kleptocracy kowtow lackadaisical lampoon languid languish loquacious lurid machination maelstrom
-magisterial malaise malfeasance malign mellifluous mettle minutiae misanthrope miscreant modicum
-motley nadir nascent neophyte nettle obfuscate obtuse oeuvre onerous opine ostensible pall panache
-paragon parochial parry pastiche paucity pejorative penchant perfunctory pique pithy placate plumb
-polemic polymath pontificate posit precipitous preclude predilection prescient prodigal promulgate
-prosaic proscribe puerile purview quail quash quibble raconteur rail rancor rarefied raze rebuff
-rebut recalcitrant recant recuse refractory relinquish reprieve repudiate rescind resplendent
-reticent reverie rife saccharine salient sanctimonious sanguine sartorial sate schadenfreude
-scintillating seditious seminal sequester servile shill sinuous skewer skittish sojourn sophomoric
-specious spurious spurn staid stalwart strident stymie substantiate subsume subterfuge sully
-supersede supplant surmise sycophantic tacit taciturn tenuous tortuous umbrage urbane usurp vacuous
-vapid verve vestigial vexed vindicate vitriolic wherewithal wrest
+acumen animus arcane ascetic ascribe attenuate auspicious beleaguered bespoke burgeon cabal
+capitulate capricious chagrin circumvent cogent collude conciliatory confluence construe corollary
+corroborate craven cull dearth delineate denizen detritus disingenuous disparage dissipate doughty
+dragoon elucidate embolden embroil encroach endemic errant erstwhile erudite gamut garner grandstand
+hamstring immutable incandescent incisive indomitable intractable lurid machination malaise mettle
+nadir nascent nettle obtuse oeuvre onerous opine pall paragon parry penchant pique placate plumb
+posit preclude prodigal promulgate purview quail quash rail raze rebuff refractory relinquish
+reprieve rescind rife salient sanguine seminal shill sojourn spurious stalwart substantiate sully
+supersede supplant tacit tenuous usurp verve vexed vindicate
 `.trim().split(/\s+/));
 
 // Added with the second bank: rarer words, nearly all far below ‘denizen’ in use.

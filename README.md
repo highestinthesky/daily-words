@@ -9,7 +9,7 @@ npm ci
 npm run dev
 ```
 
-`npm test` checks the date and review rules, the switch between word banks, the archive history, and the 853-entry word bank. `npm run build` creates the deployable `dist/` folder.
+`npm test` checks the date and review rules, the switch between word banks, the archive history, and the 1,034-entry word bank. `npm run build` creates the deployable `dist/` folder.
 
 For browser regression checks, run `npx playwright install chromium webkit` once, then `npm run test:mobile`. These check that all five entries stay visible after the entrance animation and scrolling in Chromium and Safari's WebKit engine, at phone, tablet, and desktop widths. They also cover reduced motion, enlarged text, review-marker overlap, a daily edition change, and the archive page layout.
 
