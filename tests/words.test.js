@@ -1,5 +1,6 @@
+import { createHash } from 'node:crypto';
 import { expect, it } from 'vitest';
-import { WORDS } from '../src/words.js';
+import { FIRST_BANK, RETIRED, WORDS } from '../src/words.js';
 
 // Words named for people, places, myths, or events read as trivia, not vocabulary.
 const namesake = `
@@ -38,6 +39,20 @@ it('keeps namesakes and familiar words out of the bank', () => {
   const words = new Set(WORDS.map(({ word }) => word));
   expect(namesake.filter((word) => words.has(word))).toEqual([]);
   expect(tooCommon.filter((word) => words.has(word))).toEqual([]);
+  expect([...RETIRED].filter((word) => words.has(word))).toEqual([]);
+});
+
+it('retires only words the first bank actually used', () => {
+  const first = new Set(FIRST_BANK.map(({ word }) => word));
+  expect([...RETIRED].filter((word) => !first.has(word))).toEqual([]);
+});
+
+// Past editions are computed from the first bank's exact rows and order.
+// Editing, adding, or reordering them would rewrite history and the archive.
+it('keeps the first bank frozen', () => {
+  const fingerprint = createHash('sha256').update(FIRST_BANK.map(({ word }) => word).join(' ')).digest('hex');
+  expect(FIRST_BANK).toHaveLength(670);
+  expect(fingerprint).toBe('248c8118b2ded773d5f1a2f0eac6b18871dc98fe6859d17360bbca6a7c789765');
 });
 
 it('writes every entry in a consistent, layout-safe form', () => {

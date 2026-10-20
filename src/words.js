@@ -1,7 +1,10 @@
 // Each line: word | part of speech | plain-language meaning | everyday example.
-// The bank aims above everyday vocabulary: words a strong student may know by
-// sight but rarely uses. Namesakes (Freudian, quixotic) are left out on purpose.
-const rows = `
+// The bank aims above everyday vocabulary: words a well-read adult is unlikely
+// to know. Namesakes (Freudian, quixotic) are left out on purpose.
+
+// The bank as it ran from launch. Its rows and their order stay fixed so past
+// editions, and the archive, keep the words people actually saw.
+const firstRows = `
 incisive|adj.|Sharply clear and direct about what really matters.|Her incisive question ended a debate that had run all period.
 cogent|adj.|Clear, logical, and convincing.|He made a cogent case for moving the test to Friday.
 trenchant|adj.|Sharp, forceful, and often critical.|The editorial offered a trenchant critique of the new dress code.
@@ -674,7 +677,502 @@ kakistocracy|noun|Government by the least qualified or worst people.|By March, t
 collywobbles|noun|A nervous, fluttery feeling in the stomach.|I always get the collywobbles before a big recital.
 `;
 
-export const WORDS = rows.trim().split('\n').map((line) => {
-  const [word, part, meaning, example] = line.split('|');
-  return { word, part, meaning, example };
-});
+// Words from the first bank that proved familiar to well-read adults: as common
+// as ‘denizen’ or more in English text. They leave the bank from the second
+// edition on, but stay in the first bank above for history.
+const retired = new Set(`
+acumen animus arcane ascetic ascribe attenuate auspicious beleaguered bespoke burgeon cabal
+capitulate capricious chagrin circumvent cogent collude conciliatory confluence construe corollary
+corroborate craven cull dearth delineate denizen detritus disingenuous disparage dissipate doughty
+dragoon elucidate embolden embroil encroach endemic errant erstwhile erudite gamut garner grandstand
+hamstring immutable incandescent incisive indomitable intractable lurid machination malaise mettle
+nadir nascent nettle obtuse oeuvre onerous opine pall paragon parry penchant pique placate plumb
+posit preclude prodigal promulgate purview quail quash rail raze rebuff refractory relinquish
+reprieve rescind rife salient sanguine seminal shill sojourn spurious stalwart substantiate sully
+supersede supplant tacit tenuous usurp verve vexed vindicate
+`.trim().split(/\s+/));
+
+// Added with the second bank: rarer words, nearly all far below ‘denizen’ in use.
+const addedRows = `
+rebarbative|adj.|Unattractive and off-putting; inviting objection.|His rebarbative tone made everyone stop listening.
+sciolistic|adj.|Showing shallow knowledge passed off as expertise.|His sciolistic take on economics fell apart under one question.
+tenebrous|adj.|Dark, shadowy, or obscure.|We felt our way down the tenebrous hallway after the power cut.
+fuliginous|adj.|Sooty or smoky; dusky and dark.|The old chimney left fuliginous streaks across the ceiling.
+caliginous|adj.|Misty, dim, and hard to see through.|The caliginous morning hid the bridge until we reached it.
+nacreous|adj.|Having the soft, rainbow sheen of mother-of-pearl.|The inside of the shell had a nacreous glow.
+argute|adj.|Sharp and shrewd; also, shrill in sound.|Her argute reading of the contract found the catch.
+frowsty|adj.|Stale, stuffy, and warm, like a shut-up room.|We opened every window in the frowsty cabin.
+frowzy|adj.|Scruffy, unkempt, and neglected-looking.|He showed up in a frowzy sweater he had slept in.
+feculent|adj.|Foul with filth or waste.|The feculent pond behind the farm was off limits.
+mephitic|adj.|Foul-smelling and noxious.|A mephitic smell rose from the forgotten lunchbox.
+atrabilious|adj.|Gloomy and bad-tempered.|Monday mornings put my atrabilious uncle in a mood.
+matutinal|adj.|Of or happening in the early morning.|Her matutinal run starts before the buses do.
+vespertine|adj.|Of the evening; active or blooming at dusk.|The vespertine flowers opened just as we lit the grill.
+antelucan|adj.|Happening before dawn.|We set off on an antelucan hike to catch the sunrise.
+hiemal|adj.|Of or relating to winter.|The hiemal wind found every gap in the window frame.
+brumal|adj.|Wintry; belonging to the depths of winter.|The lake had a brumal stillness by late December.
+estival|adj.|Of or belonging to summer.|The estival heat melted our chalk drawings.
+eximious|adj.|Exceptional; standing out above the rest.|Her eximious violin solo earned a standing ovation.
+nitid|adj.|Bright, glossy, and shining.|The nitid hood of the new car reflected the whole street.
+gelid|adj.|Icy cold; frozen to the touch.|I gasped when I stepped into the gelid lake.
+algid|adj.|Cold; chilled to the point of discomfort.|The algid locker room made us change fast.
+fulvous|adj.|Tawny; a dull brownish yellow.|A fulvous fox crossed the road at dusk.
+glaucous|adj.|Pale gray-green or blue-green, often with a dusty bloom.|The glaucous leaves of the succulents looked powdered.
+rutilant|adj.|Glowing or shining with a reddish light.|The rutilant embers kept us warm past midnight.
+recrudescent|adj.|Breaking out again after a quiet spell.|The recrudescent rumor spread through school again.
+crapulous|adj.|Sick or sluggish from too much food or drink.|After three plates of turkey, Dad sat crapulous on the couch.
+bibulous|adj.|Fond of drinking, especially alcohol.|The bibulous uncle made one toast too many.
+edacious|adj.|Greedy and devouring, especially of food.|The edacious puppy ate my homework and the folder.
+esurient|adj.|Hungry or greedy.|The esurient team swarmed the pizza boxes after practice.
+postprandial|adj.|Happening just after a meal.|Grandpa takes a postprandial nap every Sunday.
+anserine|adj.|Goose-like; foolish or silly.|His anserine honk of a laugh echoed through the theater.
+vulpine|adj.|Fox-like, especially in craftiness.|The villain flashed a vulpine grin.
+hircine|adj.|Goat-like, especially in smell.|The gym bag had developed a hircine odor.
+ophidian|adj.|Snake-like in form or manner.|He slid through the crowd with ophidian ease.
+corvine|adj.|Of or like crows and ravens.|Her corvine eye spotted every shiny thing on the desk.
+fissiparous|adj.|Inclined to split into factions.|The fissiparous club split into three groups in a year.
+nubilous|adj.|Cloudy, foggy, or vague.|His nubilous plan had no dates and no budget.
+impavid|adj.|Fearless; not easily alarmed.|The impavid goalie dove at the striker's feet.
+pervicacious|adj.|Extremely stubborn.|My pervicacious brother refused to admit he was lost.
+refulgent|adj.|Shining brightly; radiant.|The refulgent trophy sat in the front case.
+rubicund|adj.|Ruddy and red-faced, as from health or cold.|The rubicund skier came in grinning from the slopes.
+logorrheic|adj.|Talking compulsively and at great length.|My logorrheic seatmate narrated the entire flight.
+macilent|adj.|Lean, thin, and wasted-looking.|The macilent stray filled out after a month of meals.
+gracile|adj.|Slender and graceful.|The gracile dancer seemed to weigh nothing.
+hispid|adj.|Covered in stiff, bristly hairs.|The hispid stem scratched my hand.
+gibbous|adj.|Of the moon, more than half lit but not yet full.|A gibbous moon lit the field for the night game.
+bosky|adj.|Wooded or covered with bushes.|We picnicked in a bosky corner of the park.
+umbrageous|adj.|Shady; also, quick to take offense.|The umbrageous oak kept the bench cool all day.
+apodictic|adj.|Clearly true and beyond dispute.|She stated her answer with apodictic certainty.
+ludic|adj.|Playful in a spontaneous, aimless way.|The museum had a ludic room where kids could build anything.
+eleemosynary|adj.|Relating to charity or giving to the poor.|The bake sale had an eleemosynary purpose this year.
+supererogatory|adj.|Going beyond what duty requires.|Her supererogatory footnotes impressed the teacher.
+nescient|adj.|Lacking knowledge; unaware.|I was nescient of the rule until the referee blew the whistle.
+pococurante|adj.|Indifferent and unconcerned; caring little.|His pococurante shrug annoyed the whole team.
+eupeptic|adj.|Cheerful and optimistic; also, digesting well.|Her eupeptic mood lasted through a rainy Monday.
+frangible|adj.|Fragile; easily broken.|Pack the frangible ornaments in the top box.
+velutinous|adj.|Velvety, covered in fine soft hairs.|The velutinous leaves felt like a puppy's ear.
+aureate|adj.|Golden; also, showily elaborate in style.|His aureate prose needed fewer adjectives.
+canescent|adj.|Grayish white; hoary.|The canescent leaves of the sage shone in the sun.
+puissant|adj.|Powerful and influential.|The puissant booster club funded the new field.
+deliquescent|adj.|Melting away or dissolving into liquid.|The deliquescent ice cream ran down my wrist.
+tumid|adj.|Swollen; also, pompous in language.|His ankle was tumid after the fall.
+flocculent|adj.|Woolly and fluffy, like loose tufts.|Flocculent clouds drifted over the lake.
+gimcrack|adj.|Showy but flimsy and cheap.|The gimcrack trophy lost its handle by Friday.
+clinquant|adj.|Glittering with tinsel or false gold.|The clinquant costume shed sequins all over the stage.
+nidorous|adj.|Smelling of cooking meat or burnt fat.|The nidorous smoke drifted over from the barbecue.
+olid|adj.|Foul-smelling; rank.|Something olid lurked at the back of the fridge.
+esculent|adj.|Fit to be eaten; edible.|The guide pointed out which mushrooms were esculent.
+pleonastic|adj.|Using more words than needed, like ‘free gift’.|‘Past history’ is a pleonastic phrase.
+anfractuous|adj.|Full of twists, turns, and winding paths.|The anfractuous trail doubled back on itself twice.
+flexuous|adj.|Full of bends and curves; winding.|A flexuous creek wound through the meadow.
+marmoreal|adj.|Cold, smooth, or white like marble.|She kept a marmoreal calm during the interview.
+insalubrious|adj.|Unhealthy, or seedy and unpleasant.|The insalubrious motel had a broken ice machine.
+tetchy|adj.|Irritable and easily annoyed.|He gets tetchy when he skips breakfast.
+liverish|adj.|Slightly unwell; also, grumpy and irritable.|I felt liverish after the third slice of cake.
+donnish|adj.|Bookish and pedantic, like an old professor.|His donnish footnotes ran longer than the essay.
+crabbed|adj.|Cramped and hard to read; also, cranky.|Her crabbed handwriting needed a magnifying glass.
+dreich|adj.|Dreary and bleak, especially of weather.|It was a dreich, drizzly day for the parade.
+lenitive|adj.|Soothing; easing pain or distress.|The aloe had a lenitive effect on my sunburn.
+minatory|adj.|Threatening; expressing menace.|The coach gave us a minatory look during warmups.
+vatic|adj.|Prophetic, like a seer.|Her vatic warning about the weather came true.
+fatidic|adj.|Prophetic; foretelling fate.|The fortune cookie felt oddly fatidic this time.
+bathetic|adj.|Sliding from the lofty into the ridiculous.|The epic poem ended with a bathetic line about socks.
+etiolated|adj.|Pale and weakened from lack of light or vigor.|The etiolated basil on the windowsill needed sun.
+cadaverous|adj.|Gaunt and pale, like a corpse.|After finals week he looked cadaverous.
+ferruginous|adj.|Rust-colored; containing iron.|The ferruginous cliffs glowed at sunset.
+smaragdine|adj.|Emerald green in color.|The lake turned smaragdine in the afternoon light.
+eburnean|adj.|Like ivory in color or texture.|The old piano keys had an eburnean yellow.
+niveous|adj.|Snowy, or as white as snow.|The niveous tablecloth did not survive the spaghetti.
+prelapsarian|adj.|Innocent and carefree, as before a fall from grace.|We remember summer camp as a prelapsarian time.
+quondam|adj.|Former; that once was.|My quondam best friend now sits across the room.
+whilom|adj.|Former; of an earlier time.|The whilom bakery is now a phone store.
+hebdomadal|adj.|Weekly; happening every seven days.|Our hebdomadal quiz falls on Thursday.
+gormless|adj.|Lacking sense; dim and clueless.|I gave a gormless wave to someone waving behind me.
+addlepated|adj.|Confused and muddled in the head.|I was addlepated after three hours of chemistry.
+hebetudinous|adj.|Dull and sluggish of mind.|The hebetudinous meeting dragged past five.
+incondite|adj.|Badly put together; crude in construction.|His incondite essay jumped from point to point.
+macaronic|adj.|Mixing two or more languages, often comically.|Her macaronic toast switched between French and English.
+demotic|adj.|Of ordinary people, especially everyday speech.|The poet wrote in a demotic voice full of slang.
+hieratic|adj.|Priestly; highly formal and stylized.|The usher's hieratic bow felt over the top.
+uxorious|adj.|Excessively fond of or devoted to one's wife.|The uxorious groom agreed to every single request.
+materteral|adj.|Like an aunt, kindly in an aunt's way.|She gave the new hire some materteral advice.
+sororal|adj.|Sisterly; of or like a sister.|They shared a sororal bond despite the age gap.
+connubial|adj.|Relating to marriage.|Connubial life began with a fight over the thermostat.
+ambisinister|adj.|Clumsy with both hands.|An ambisinister cook should not juggle knives.
+sinistral|adj.|Left-handed, or on the left side.|The sinistral pitcher baffled every batter.
+mumchance|adj.|Silent and tongue-tied.|He stood mumchance when she said yes.
+inutile|adj.|Useless; of no practical value.|The broken stapler sat inutile on the desk.
+concinnous|adj.|Harmoniously and elegantly arranged.|Her concinnous slides made the talk easy to follow.
+fustian|adj.|Pompous and inflated in language.|The fustian speech used ‘whereupon’ six times.
+saponaceous|adj.|Soapy; also, slippery and evasive.|The saponaceous answer slid right around the question.
+oleaginous|adj.|Oily; also, smarmy and too flattering.|The oleaginous salesman called everyone ‘my friend.’
+fubsy|adj.|Short and stout; squat.|The fubsy armchair took up half the room.
+pawky|adj.|Dryly humorous in a shrewd, sly way.|His pawky remarks kept the meeting light.
+raddled|adj.|Worn out and haggard; muddled.|After the red-eye flight, he looked raddled.
+tatterdemalion|adj.|Ragged and tattered.|The tatterdemalion scarecrow lost its hat in the storm.
+draggled|adj.|Wet and dirty, as if hauled through mud.|The dog came back draggled and proud.
+strepitous|adj.|Loud, noisy, and clamorous.|The strepitous cafeteria made phone calls impossible.
+rackety|adj.|Noisy and boisterous; also, rickety.|The rackety old bus rattled every window.
+piffling|adj.|Trivial, small, and unimportant.|They fought over a piffling two points.
+cockamamie|adj.|Ridiculous and implausible.|He had a cockamamie plan to sell ice in January.
+jackleg|adj.|Unskilled, amateurish, or makeshift.|A jackleg repair kept the bike going for a week.
+tinpot|adj.|Petty and self-important, of little real worth.|The tinpot hall monitor wrote us all up.
+cattywampus|adj.|Askew; not lined up properly.|The picture hung cattywampus after the door slammed.
+farouche|adj.|Shy, sullen, or unsociable, as if wild.|The farouche new cat hid under the bed all week.
+rumbustious|adj.|Boisterous and unruly.|The rumbustious crowd stormed the court after the win.
+lexiphanic|adj.|Using pretentious, showy words.|His lexiphanic essay needed a glossary.
+magniloquent|adj.|Lofty and boastful in speech.|The magniloquent mayor promised a golden age of potholes.
+declamatory|adj.|Loud and rhetorical, as if addressing a crowd.|Her declamatory toast silenced the room.
+circumlocutory|adj.|Talking around the point instead of to it.|His circumlocutory reply never actually said no.
+ambagious|adj.|Roundabout and indirect.|The ambagious directions took us past one gas station twice.
+mantic|adj.|Relating to divination or prophecy.|The tarot reader had a mantic flair.
+comminatory|adj.|Threatening punishment or vengeance.|The comminatory notice warned of towing at noon.
+malefic|adj.|Causing harm or evil.|The old house seemed to have a malefic air.
+acidulous|adj.|Slightly sour; also, sharp and biting in manner.|Her acidulous review stung the director.
+acescent|adj.|Turning sour, or slightly sour.|The acescent milk smelled faintly off.
+querulous|adj.|Complaining in a petulant, whining way.|The querulous passenger rang the call button every hour.
+pettish|adj.|Petulant and sulky.|He gave a pettish shrug when she won.
+shirty|adj.|Bad-tempered and annoyed.|She got shirty when I asked for my charger back.
+stroppy|adj.|Bad-tempered and difficult to deal with.|The stroppy toddler refused every shoe.
+snappish|adj.|Irritable and quick to snap at people.|Lack of sleep made her snappish.
+waspish|adj.|Sharply irritable and spiteful.|His waspish comments stung more than he meant.
+narky|adj.|Irritable and sarcastic.|He gets narky when someone takes his seat.
+noisome|adj.|Offensive to the senses; also, harmful.|A noisome smell came from the drain.
+dyspeptic|adj.|Irritable and sour, as if from indigestion.|The dyspeptic critic hated every movie that year.
+chthonic|adj.|Of or relating to the underworld.|The cave tour had a chthonic chill.
+sere|adj.|Dry and withered.|The sere lawn crunched underfoot in August.
+piacular|adj.|Making amends; also, calling for atonement.|She brought a piacular plate of cookies after the fight.
+lumpen|adj.|Boorish, stupid, or crude.|The lumpen sequel had none of the original's wit.
+aulic|adj.|Relating to a royal court.|The office had an aulic pecking order of who sat where.
+ensorcelled|adj.|Enchanted, as if by a spell.|The ensorcelled audience did not move until the last note.
+tutelary|adj.|Serving as a guardian or protector.|The old oak was the tutelary spirit of our street.
+velleity|noun|A mere wish too weak to act on.|My plan to learn Latin remained a velleity.
+quiddity|noun|The essence of a thing; also, a petty quibble.|The chef tried to capture the quiddity of a tomato.
+haecceity|noun|The quality that makes a thing uniquely itself.|Each snowflake has its own haecceity.
+sciolist|noun|A person who pretends to more knowledge than they have.|The sciolist in our group quoted forums as gospel.
+mumpsimus|noun|A stubborn habit or belief kept after it is shown wrong.|Writing ‘alot’ is his mumpsimus, despite every correction.
+logomachy|noun|A dispute about words or their meanings.|The debate turned into logomachy over what ‘fair’ means.
+apricity|noun|The warmth of the sun on a cold winter day.|We ate lunch outside to soak up the apricity.
+desuetude|noun|A state of disuse.|The old tennis court has fallen into desuetude.
+cunctation|noun|Delay; the habit of putting things off.|My cunctation left one night for a two-week project.
+fanfaronade|noun|Loud, swaggering boasting.|His fanfaronade before the race made losing worse.
+furbelow|noun|A showy ruffle or piece of trim.|Her prom dress had a furbelow at every hem.
+gewgaw|noun|A showy trinket of little value.|The gift shop sold gewgaws at museum prices.
+bibelot|noun|A small decorative ornament or curio.|Her shelf was crowded with bibelots from every trip.
+folderol|noun|Foolish nonsense; showy fuss over nothing.|Skip the folderol and tell me who won.
+flapdoodle|noun|Nonsense; foolish talk.|The ad was pure flapdoodle about miracle shampoo.
+codswallop|noun|Nonsense; utter rubbish.|He said the dog ate his essay, which was codswallop.
+bafflegab|noun|Confusing, wordy jargon.|The terms of service were ten pages of bafflegab.
+megrim|noun|Low spirits; also, a sudden whim.|A rainy week left her in a megrim.
+mulligrubs|noun|A fit of gloom or sulky bad temper.|He had the mulligrubs after the team lost.
+fantods|noun|A state of nervous, fidgety irritation.|Waiting for results gave me the fantods.
+conniption|noun|A fit of rage or hysteria.|Mom had a conniption over the muddy carpet.
+snit|noun|A fit of irritation or sulking.|He went into a snit over the seating chart.
+persiflage|noun|Light, teasing banter.|The hosts traded persiflage between acts.
+badinage|noun|Playful, witty back-and-forth.|Their badinage made the long drive fly by.
+raillery|noun|Good-humored teasing.|The team's raillery never crossed into cruelty.
+gallimaufry|noun|A confused jumble or medley.|The yard sale was a gallimaufry of lamps and skates.
+salmagundi|noun|A mixed dish of many things; any odd mixture.|Her playlist was a salmagundi of jazz and metal.
+congeries|noun|A disorderly collection or heap.|A congeries of cables sat behind the TV.
+contumely|noun|Insolent, scornful abuse.|The referee endured contumely from both benches.
+acedia|noun|Spiritual or mental apathy; listless boredom.|Acedia set in by the third week of summer.
+anhedonia|noun|The inability to feel pleasure.|His anhedonia made even pizza night feel flat.
+weltschmerz|noun|Sad weariness with the world as it is.|Reading the news gave her a dose of weltschmerz.
+hiraeth|noun|A longing for a home you cannot return to.|Old photos of the farm filled him with hiraeth.
+saudade|noun|A deep, wistful longing for something absent.|The song carried a saudade for summers past.
+fernweh|noun|An ache to travel to faraway places.|Fernweh hit hard every time a plane passed over.
+tsundoku|noun|Buying books and letting them pile up unread.|My nightstand is a monument to tsundoku.
+zeugma|noun|One word applied to two others in different senses.|‘She lost her keys and her temper’ is a zeugma.
+chiasmus|noun|A reversal of words across two parallel phrases.|‘Fail to plan, plan to fail’ is a neat chiasmus.
+anadiplosis|noun|Starting a clause with the last word of the one before.|‘Fear leads to anger; anger leads to hate’ uses anadiplosis.
+aposiopesis|noun|Breaking off a sentence before finishing it.|‘Do that again and I'll...’ is classic aposiopesis.
+tmesis|noun|Splitting a word by inserting another inside it.|‘Abso-flipping-lutely’ is a playful tmesis.
+hendiadys|noun|Expressing one idea with two words joined by ‘and’.|‘Nice and warm’ is a familiar hendiadys.
+metonymy|noun|Naming a thing by something closely tied to it.|Calling a monarch ‘the crown’ is metonymy.
+catachresis|noun|Misuse of a word, or a strained figure of speech.|Using ‘literally’ for emphasis is a common catachresis.
+prosopopoeia|noun|Speaking as an absent or imaginary person; personification.|The essay used prosopopoeia, letting the river speak.
+ekphrasis|noun|A vivid written description of a work of art.|Her poem was an ekphrasis of a painting of a diner.
+apophasis|noun|Raising a subject by saying you won't mention it.|‘I won't even bring up your grades’ is apophasis.
+paraprosdokian|noun|A sentence whose surprise ending reframes its start.|His joke ended in a paraprosdokian that made us groan.
+borborygmus|noun|A rumbling or gurgling sound in the stomach.|A loud borborygmus broke the silence during the exam.
+singultus|noun|The medical term for hiccups.|A fit of singultus interrupted his speech.
+sternutation|noun|The act of sneezing.|Pollen season brings a chorus of sternutation.
+oscitation|noun|Yawning; also, drowsy inattention.|The lecture set off a wave of oscitation.
+horripilation|noun|Goose bumps; hair standing on end from cold or fear.|The final chord gave me horripilation.
+formication|noun|A feeling of insects crawling on the skin.|Talking about lice gave everyone formication.
+pandiculation|noun|Stretching and yawning, as on waking.|The cat's morning pandiculation took a full minute.
+lalochezia|noun|Swearing to relieve stress or pain.|Stubbing his toe set off a burst of lalochezia.
+phosphene|noun|Light you see when you rub your closed eyes.|Rubbing my eyes made purple phosphenes swirl.
+psithurism|noun|The sound of wind rustling through trees.|We fell asleep to the psithurism of the pines.
+crepuscule|noun|Twilight; the dim light of dusk.|Bats came out in the crepuscule.
+sillage|noun|The trail of scent left behind by a perfume.|Her sillage lingered in the hall after she left.
+haar|noun|A cold sea fog rolling in off the water.|A haar swallowed the beach by noon.
+virga|noun|Rain that evaporates before it reaches the ground.|Streaks of virga hung under the clouds.
+graupel|noun|Soft, small pellets of snow and ice.|Graupel bounced off the windshield.
+williwaw|noun|A sudden, violent gust of cold wind.|A williwaw nearly flipped our canoe.
+haboob|noun|A violent dust storm in desert regions.|The haboob turned the afternoon orange.
+mizzle|noun|A fine, misty rain.|The mizzle was too light for an umbrella.
+hebetude|noun|Mental dullness or lethargy.|A heavy lunch brought on an afternoon of hebetude.
+slugabed|noun|A lazy person who stays in bed late.|My brother is a slugabed until noon on weekends.
+lickspittle|noun|A fawning, servile flatterer.|The manager surrounded himself with lickspittles.
+pettifogger|noun|A person who quibbles over petty details.|The pettifogger argued about the font size.
+quacksalver|noun|A charlatan who sells fake cures.|The quacksalver online sold ‘brain-boosting’ water.
+lummox|noun|A big, clumsy, slow-witted person.|The friendly lummox tripped over his own backpack.
+mooncalf|noun|A dreamy, absent-minded fool.|He drifted around the hall like a lovesick mooncalf.
+jackanapes|noun|A cheeky, impertinent person.|Some jackanapes stuck gum on the trophy.
+coxcomb|noun|A vain, showy person fixated on looks.|The coxcomb checked his hair in every window.
+poetaster|noun|A writer of bad or trivial verse.|The poetaster rhymed ‘love’ with ‘glove’ again.
+criticaster|noun|A petty or incompetent critic.|An online criticaster gave the film one star unseen.
+opsimath|noun|A person who begins learning late in life.|Grandma became an opsimath, starting piano at seventy.
+philomath|noun|A lover of learning.|The philomath read encyclopedias for fun.
+bibliotaph|noun|A person who hoards books and hides them away.|The bibliotaph locked his first editions in a closet.
+abecedarian|noun|A beginner learning the basics.|As an abecedarian guitarist, I know three chords.
+amanuensis|noun|A person who takes dictation or copies manuscripts.|The author's amanuensis typed every word he spoke.
+factotum|noun|An employee who does all kinds of work.|The office factotum fixed the printer and ordered lunch.
+dragoman|noun|An interpreter and guide.|Our dragoman translated the market haggling.
+boulevardier|noun|A stylish man-about-town.|He played the boulevardier with a scarf and a cane.
+noctambulist|noun|A sleepwalker, or one who roams at night.|The noctambulist woke up in the kitchen.
+hierophant|noun|An interpreter of sacred or arcane mysteries.|The hierophant of the coding club explained the bug.
+thaumaturge|noun|A worker of wonders or miracles.|The mechanic was a thaumaturge with old engines.
+haruspex|noun|A diviner who read omens in animal entrails.|No haruspex could predict this year's playoffs.
+epigone|noun|An inferior imitator of a creative master.|The band's epigones copied the sound but not the spark.
+satrap|noun|A subordinate ruler or petty official.|The hall monitor ruled like a satrap.
+panjandrum|noun|A self-important person in authority.|The panjandrum of the HOA fined us for blue shutters.
+picaroon|noun|A rogue, pirate, or adventurer.|The picaroon in the novel steals a ship in chapter two.
+scapegrace|noun|A mischievous or wayward person; a rascal.|The scapegrace cousin set off fireworks at the wedding.
+wastrel|noun|A wasteful, good-for-nothing person.|The wastrel spent his birthday money on day one.
+muckworm|noun|A miser; one who grubs for money.|The muckworm would not tip the waiter.
+pinchpenny|noun|A stingy person who hoards every cent.|The pinchpenny reused tea bags four times.
+wiseacre|noun|An annoying know-it-all.|The wiseacre in back corrected the substitute.
+smellfungus|noun|A chronic grumbler who finds fault everywhere.|The smellfungus hated the beach, the food, and the sun.
+crapehanger|noun|A gloomy pessimist who spoils the fun.|Don't be a crapehanger; the forecast says sunny.
+gongoozler|noun|An idler who watches the activity on canals.|A row of gongoozlers watched the boat squeeze through the lock.
+ninnyhammer|noun|A fool; a simpleton.|The ninnyhammer locked his keys in the car again.
+hobbledehoy|noun|An awkward, gangly young person.|He was a hobbledehoy of fourteen, all elbows.
+schlemiel|noun|A clumsy, unlucky bungler.|The schlemiel spilled soup on the one guest in white.
+schlimazel|noun|A chronically unlucky person.|The schlimazel always gets the wobbly table.
+nebbish|noun|A timid, meek, ineffectual person.|The nebbish in the movie finally stands up to his boss.
+luftmensch|noun|An impractical dreamer with no steady income.|The luftmensch had a hundred ideas and no job.
+macher|noun|A big shot; someone who gets things done.|She is the macher behind the school fundraiser.
+shpilkes|noun|Nervous impatience; ants in the pants.|The kids had shpilkes waiting for the field trip bus.
+tsuris|noun|Trouble, aggravation, and woe.|The move gave the family nothing but tsuris.
+trencherman|noun|A hearty, enthusiastic eater.|The trencherman went back for fourths.
+toper|noun|A heavy, habitual drinker.|The old toper sat at the end of the bar.
+threnody|noun|A song or poem of mourning.|The band closed with a threnody for their late drummer.
+palinode|noun|A poem or statement retracting an earlier one.|His palinode took back every insult in the first post.
+panegyric|noun|A formal speech or text of high praise.|The yearbook ran a panegyric to the retiring janitor.
+epithalamium|noun|A song or poem celebrating a wedding.|Her sister read an epithalamium at the reception.
+callithump|noun|A noisy, boisterous parade.|The callithump of pots and pans woke the block.
+charivari|noun|A mock serenade with pots and pans for newlyweds.|Neighbors held a charivari outside the honeymoon cabin.
+trumpery|noun|Showy but worthless stuff; nonsense.|The attic was full of trumpery from old parties.
+eructation|noun|A belch, or the act of belching.|A loud eructation ended the formal dinner.
+crapulence|noun|Sickness from too much eating or drinking.|Thanksgiving crapulence kept us on the couch.
+quodlibet|noun|A fine point for debate; also, a musical medley.|The seminar spent an hour on a single quodlibet.
+apothegm|noun|A short, pointed saying.|Grandma's favorite apothegm: ‘Measure twice.’
+logogriph|noun|A word puzzle, such as a riddle built on anagrams.|The newspaper's logogriph stumped the whole family.
+lipogram|noun|A text written without using a particular letter.|He wrote a lipogram that never used the letter E.
+pangram|noun|A sentence that uses every letter of the alphabet.|‘The quick brown fox’ line is the best-known pangram.
+contronym|noun|A word that can mean its own opposite.|‘Sanction’ is a contronym: it can allow or forbid.
+retronym|noun|A new name for an old thing to tell it from a newer one.|‘Landline’ is a retronym born from cell phones.
+aptronym|noun|A name that suits its owner's job.|A dentist named Dr. Toothman has an aptronym.
+exonym|noun|A name outsiders use for a place instead of its own.|‘Germany’ is an exonym; locals say Deutschland.
+hypocorism|noun|A pet name or affectionate nickname.|‘Bubba’ was a hypocorism that stuck for life.
+cacoethes|noun|An irresistible urge to do something unwise.|He has a cacoethes for hitting reply-all.
+ataraxia|noun|A calm state free of worry or distress.|Hammock time is my path to ataraxia.
+eudaemonia|noun|Happiness that comes from living well.|For the philosopher, eudaemonia meant a life of virtue.
+phronesis|noun|Practical wisdom in choosing how to act.|The coach showed phronesis in resting her star.
+metanoia|noun|A fundamental change of heart or mind.|The trip sparked a metanoia about his career.
+kairos|noun|The right or opportune moment.|She waited for the kairos to ask for a raise.
+sophrosyne|noun|Moderation and self-control.|Two slices of cake showed little sophrosyne.
+parrhesia|noun|Frank, fearless speech.|Her parrhesia at the town meeting won applause.
+peripeteia|noun|A sudden reversal of fortune in a story.|The film's peripeteia came at the wedding.
+prolepsis|noun|Answering an objection before anyone raises it.|Her essay used prolepsis to head off the obvious rebuttal.
+apologue|noun|A short moral fable.|The teacher told an apologue about a greedy fox.
+pentimento|noun|Traces of an earlier painting showing through a later one.|X-rays revealed a pentimento of a dog under the portrait.
+sfumato|noun|Soft blending of tones without hard outlines.|The sfumato made her smile hard to read.
+grisaille|noun|Painting done entirely in shades of gray.|The mural was a grisaille of the old harbor.
+impasto|noun|Paint laid on so thick it stands up from the surface.|The impasto in the sunflowers catches the light.
+craquelure|noun|A network of fine cracks on an old painting.|The craquelure showed the portrait was centuries old.
+verdigris|noun|The green crust that forms on copper or brass.|Verdigris coated the old church bell.
+foxing|noun|Brown spots that appear on old paper.|Foxing speckled the pages of the old atlas.
+deckle|noun|The rough, untrimmed edge of handmade paper.|The invitations had a soft deckle edge.
+colophon|noun|A publisher's emblem, or a note on how a book was made.|The colophon named the typeface and the paper.
+fleuron|noun|A flower-shaped printer's ornament.|A small fleuron separated each chapter.
+pilcrow|noun|The paragraph mark, ¶.|Turn on pilcrows to see the stray line breaks.
+octothorpe|noun|The # symbol, also called the pound or hash sign.|Press the octothorpe to return to the main menu.
+interrobang|noun|A punctuation mark combining a question and exclamation.|‘You ate all of it?!’ calls for an interrobang.
+virgule|noun|A slash mark, as used in and/or.|Use a virgule between the two dates.
+obelus|noun|The division sign, or a dagger mark in old texts.|The calculator's obelus key sits next to the times sign.
+asterism|noun|A triangle of three printed stars; also, a star pattern.|The Big Dipper is an asterism, not a constellation.
+tittle|noun|The dot over a lowercase i or j.|She drew hearts instead of tittles on her i's.
+lemniscate|noun|The figure-eight infinity symbol.|He inked a tiny lemniscate on his wrist.
+guillemet|noun|An angled quotation mark, like « or ».|French books use guillemets around dialogue.
+gubbins|noun|Odds and ends; miscellaneous bits.|The drawer was full of cables and gubbins.
+impedimenta|noun|Bulky equipment or baggage that slows you down.|We hauled our camping impedimenta up the hill.
+oddment|noun|A leftover piece or scrap.|She quilted the blanket from fabric oddments.
+tessera|noun|A small tile used in a mosaic.|One loose tessera spoiled the pattern.
+spolia|noun|Old building stones reused in new construction.|The church wall was built partly from ancient spolia.
+clerestory|noun|A high row of windows above eye level.|Light poured through the clerestory into the gym.
+postern|noun|A small back or side gate.|We slipped out the postern behind the castle.
+finial|noun|An ornament crowning a post, roof, or lamp.|The bed's brass finials gleamed.
+newel|noun|The main post at the foot of a staircase.|He swung around the newel and raced upstairs.
+gnomon|noun|The part of a sundial that casts the shadow.|The gnomon's shadow pointed to three o'clock.
+clepsydra|noun|An ancient clock that measures time by dripping water.|The museum had a working clepsydra.
+verdure|noun|Lush green vegetation.|Spring rain brought verdure back to the hills.
+greensward|noun|An expanse of grassy turf.|Kids tumbled across the greensward.
+spinney|noun|A small wood or thicket.|A fox lived in the spinney behind the school.
+drumlin|noun|An oval hill shaped by a glacier.|The farm sat on top of a drumlin.
+esker|noun|A long, winding ridge of gravel left by a glacier.|The trail followed the spine of an esker.
+runnel|noun|A small stream or channel of water.|A runnel of melted snow ran down the street.
+freshet|noun|A sudden rise in a stream from rain or melting snow.|The spring freshet flooded the footpath.
+seiche|noun|A standing wave that sloshes back and forth in a lake.|A seiche made the lake level jump a foot.
+tombolo|noun|A sandbar that connects an island to the mainland.|At low tide we walked the tombolo to the island.
+spindrift|noun|Spray blown from the crests of waves.|Spindrift stung our faces on the ferry.
+sough|noun|A soft moaning or sighing sound, as of wind.|The sough of the wind kept me awake.
+murmuration|noun|A swirling flock of starlings in flight.|A murmuration of starlings filled the dusk sky.
+clowder|noun|A group or gathering of cats.|A clowder of cats lived behind the diner.
+stridulation|noun|The chirping made by insects rubbing body parts together.|Cricket stridulation filled the summer night.
+viand|noun|An item of food, especially a choice one.|The table was spread with viands for the party.
+mugwump|noun|A person who stays independent of party politics.|The mugwump refused to endorse either candidate.
+blatherskite|noun|A person who talks a lot of nonsense.|The blatherskite on the radio never took a breath.
+nudnik|noun|A pest; a nagging, annoying person.|The nudnik asked for the fifth time if we were there yet.
+schnorrer|noun|A habitual sponger or freeloader.|The schnorrer showed up whenever pizza arrived.
+bubkes|noun|Nothing at all; a worthless amount.|After all that work, we got bubkes.
+florilegium|noun|An anthology of selected passages.|Her florilegium of favorite quotes filled a notebook.
+chrestomathy|noun|A collection of passages for learning a language.|The Latin chrestomathy had short stories with notes.
+omphaloskepsis|noun|Navel-gazing; self-absorbed contemplation.|Ten pages of omphaloskepsis passed for a diary.
+apricate|verb|To bask in the sun.|The cat apricated on the windowsill all afternoon.
+vilipend|verb|To belittle or speak of with contempt.|Don't vilipend the freshman for asking questions.
+obnubilate|verb|To cloud over or obscure.|Jargon obnubilated the point of the memo.
+obtund|verb|To blunt or dull, especially a sense or pain.|The ice obtunded the ache in my ankle.
+cachinnate|verb|To laugh loudly and without restraint.|The crowd cachinnated at the comedian's last joke.
+ululate|verb|To howl or wail, often in grief or celebration.|The fans ululated when the final whistle blew.
+susurrate|verb|To whisper or rustle softly.|Leaves susurrated in the evening breeze.
+perseverate|verb|To keep repeating a thought or action past its point.|He perseverated on one missed question for days.
+divagate|verb|To stray or wander from the subject.|The lecture divagated into the professor's cats.
+absquatulate|verb|To leave abruptly; to make off.|The cat absquatulated when the vacuum started.
+fossick|verb|To rummage around in search of something.|I fossicked through the drawer for a pen.
+rusticate|verb|To send to the countryside; to suspend from university.|He was rusticated for a term after the prank.
+immure|verb|To shut someone in, as if behind walls.|She immured herself in the library during finals.
+inspissate|verb|To thicken, as by boiling or evaporation.|Simmer the sauce until it inspissates.
+macerate|verb|To soften by soaking in liquid.|Macerate the strawberries in sugar for an hour.
+triturate|verb|To grind into a fine powder.|The pharmacist triturated the tablets for the syrup.
+comminute|verb|To reduce to tiny particles; to pulverize.|The blender comminuted the ice in seconds.
+deliquesce|verb|To melt away or dissolve.|The snowman deliquesced by noon.
+evanesce|verb|To fade away like vapor.|Our lead evanesced in the final minute.
+excogitate|verb|To think out carefully; to devise.|They excogitated a plan to surprise the coach.
+ratiocinate|verb|To reason step by step.|The detective ratiocinated his way to the culprit.
+lucubrate|verb|To study or write laboriously, especially at night.|She lucubrated over her thesis by lamplight.
+objurgate|verb|To scold sharply.|The coach objurgated the team at halftime.
+animadvert|verb|To comment critically on something.|The editor animadverted on our loose deadlines.
+reprehend|verb|To reprimand or find fault with.|The judge reprehended the lawyer for his tone.
+asperse|verb|To spread false or damaging charges against.|The ad aspersed her record without evidence.
+calumniate|verb|To make false and damaging statements about.|The rumor calumniated a teacher who did nothing wrong.
+obtest|verb|To beg earnestly; to call on as a witness.|He obtested his friends to keep the secret.
+syncretize|verb|To blend different beliefs or practices into one.|The festival syncretized two cultures' traditions.
+limn|verb|To depict or describe in painting or words.|Her essay limned the city at dawn.
+maunder|verb|To talk or move aimlessly.|He maundered on about his fantasy team.
+confabulate|verb|To chat; also, to fill memory gaps with invented details.|We confabulated over coffee for hours.
+truckle|verb|To submit or yield obsequiously.|He refused to truckle to the team captain.
+importune|verb|To pester with repeated requests.|The kids importuned us for ice cream all day.
+mulct|verb|To extract money by fines or by fraud.|The scheme mulcted retirees of their savings.
+euchre|verb|To cheat or outwit.|The salesman euchred us into the extended warranty.
+chouse|verb|To cheat or swindle.|The street game choused tourists out of twenty dollars.
+defalcate|verb|To misuse money held in trust.|The treasurer defalcated the club's dues.
+peculate|verb|To embezzle public or entrusted money.|The official peculated funds meant for the library.
+hypothecate|verb|To pledge something as security without giving it up.|They hypothecated the house to fund the bakery.
+titivate|verb|To make small improvements to one's appearance.|She titivated in the mirror before the photo.
+bedizen|verb|To dress or decorate gaudily.|They bedizened the float with tinsel and lights.
+caparison|verb|To dress in rich decorative clothing.|The horses were caparisoned for the parade.
+footle|verb|To waste time on trivial things.|We footled around until the movie started.
+fribble|verb|To waste time frivolously.|He fribbled away the afternoon on his phone.
+scarper|verb|To run away or leave in a hurry.|The kids scarpered when the window broke.
+blench|verb|To flinch or shy away in fear.|She did not blench at the sight of the needle.
+gawp|verb|To stare openly and stupidly.|Tourists gawped at the street performer.
+lour|verb|To frown, scowl, or look threatening.|Storm clouds loured over the stadium.
+harrumph|verb|To clear one's throat or grumble in disapproval.|Grandpa harrumphed at the price of coffee.
+gurn|verb|To pull a grotesque face.|He gurned at the camera in every photo.
+fleer|verb|To laugh or grin mockingly.|The bullies fleered at his new haircut.
+expostulate|verb|To argue earnestly in protest.|She expostulated with the ref over the call.
+perorate|verb|To speak at great length; to sum up a speech.|The senator perorated for an hour.
+descant|verb|To talk at length on a subject.|He descanted on the history of the bicycle.
+vaticinate|verb|To foretell or prophesy.|Pundits vaticinated a landslide that never came.
+prink|verb|To dress up or primp fussily.|He prinked in front of the mirror for twenty minutes.
+furbish|verb|To polish or restore to a fresh condition.|We furbished the old desk with new varnish.
+kvell|verb|To beam with pride and pleasure.|Her parents kvelled through the whole graduation.
+fress|verb|To eat greedily and with gusto.|We fressed our way through the buffet.
+obsecrate|verb|To beseech or implore.|He obsecrated the teacher for an extension.
+suborn|verb|To bribe or induce someone to do wrong.|The defendant tried to suborn a witness.
+palter|verb|To talk or act insincerely; to haggle.|Don't palter with me; just give me the real price.
+cadge|verb|To ask for or get something by begging.|He cadged a ride home from practice.
+snaffle|verb|To take quickly for oneself.|She snaffled the last cookie before anyone noticed.
+nobble|verb|To tamper with or influence improperly.|Someone tried to nobble the judges before the contest.
+distrain|verb|To seize property to force payment of a debt.|The landlord distrained the tenant's furniture.
+deracinate|verb|To uproot, or tear from one's native culture.|The move deracinated him from everything familiar.
+rive|verb|To split or tear apart violently.|The lightning rived the old oak in two.
+dissever|verb|To divide or separate.|The fence dissevered the two yards.
+ramify|verb|To branch out; to spread into consequences.|The small rule change ramified across the league.
+indurate|verb|To harden; to make callous.|Years of criticism indurated her to bad reviews.
+gormandize|verb|To eat greedily and to excess.|We gormandized on pie at the fair.
+fustigate|verb|To beat with a stick; to criticize harshly.|The review fustigated the film's script.
+scarify|verb|To scratch the surface of; to criticize harshly.|We scarified the lawn before seeding it.
+discommode|verb|To cause inconvenience to.|I hope the late change does not discommode you.
+bumfuzzle|verb|To confuse or fluster.|The trick question bumfuzzled the whole class.
+controvert|verb|To argue against or deny.|No one could controvert her data.
+confute|verb|To prove wrong with argument or evidence.|One photo confuted his whole alibi.
+asseverate|verb|To declare earnestly and solemnly.|He asseverated that he had never seen the dog.
+educe|verb|To bring out or develop something latent.|Good questions educe better answers.
+wassail|verb|To drink and make merry; to carol door to door.|Neighbors wassailed down the street on New Year's Eve.
+roister|verb|To celebrate noisily and boisterously.|The fans roistered in the square till dawn.
+curvet|verb|To leap or frisk about.|The pony curveted across the paddock.
+lollop|verb|To move with clumsy, bounding strides.|The puppy lolloped across the lawn.
+galumph|verb|To move in a clumsy, heavy, noisy way.|My brother galumphed down the stairs at six.
+hirple|verb|To limp or hobble.|He hirpled off the field holding his knee.
+pootle|verb|To move or travel in a leisurely way.|We pootled around town on our bikes.
+crepitate|verb|To make a crackling sound.|The leaves crepitated under our boots.
+whiffle|verb|To blow in gusts; also, to waver.|The wind whiffled the candle flames.
+plash|verb|To dabble or splatter gently in water.|Ducks plashed in the shallow pond.
+begrime|verb|To blacken with grime.|Soot begrimed the chimney sweep's face.
+bespatter|verb|To spatter with liquid; also, to slander.|The bus bespattered us with puddle water.
+yawp|verb|To utter a loud, harsh cry.|The gulls yawped over the boardwalk.
+prate|verb|To talk at length in a foolish way.|He prated about his golf swing all dinner.
+blether|verb|To talk long-windedly without much sense.|They blethered on the phone for two hours.
+chunter|verb|To mutter or grumble under one's breath.|Dad chuntered about the traffic all the way home.
+mither|verb|To pester or fuss.|Stop mithering me about the dishes.
+chivvy|verb|To nag someone to do something; to hurry along.|She chivvied the kids out the door.
+abash|verb|To make embarrassed or ashamed.|Her quiet reply abashed the heckler.
+discountenance|verb|To disconcert; also, to show disapproval of.|The question discountenanced the confident speaker.
+nonplus|verb|To puzzle so completely that one is at a loss.|The riddle nonplussed the whole table.
+bruit|verb|To spread a rumor widely.|News of the breakup was bruited about the hallway.
+clype|verb|To tell tales; to snitch.|Don't clype on your sister to the teacher.
+noodge|verb|To pester or nag.|She noodged him until he called his grandmother.
+skelp|verb|To slap or smack.|Grandpa skelped the table when he laughed.
+thole|verb|To endure without complaint.|We tholed the long drive with snacks and podcasts.
+scunner|verb|To feel or cause disgust.|The smell of the cafeteria scunnered him.
+stravaig|verb|To wander aimlessly.|We stravaiged along the river all afternoon.
+wamble|verb|To feel queasy; also, to move unsteadily.|My stomach wambled on the roller coaster.
+spraddle|verb|To spread one's legs wide; to sprawl.|He spraddled across the couch.
+wigwag|verb|To signal by waving flags or arms.|The lifeguard wigwagged us back toward shore.
+dodder|verb|To tremble or totter, as from age.|The old dog doddered over to its bowl.
+titubate|verb|To stagger or stumble.|He titubated off the spinning ride.
+circumambulate|verb|To walk all the way around something.|We circumambulated the lake before breakfast.
+gazump|verb|To raise a price after agreeing to a sale.|The seller gazumped us the day before closing.
+`;
+
+function parse(rows) {
+  return rows.trim().split('\n').map((line) => {
+    const [word, part, meaning, example] = line.split('|');
+    return { word, part, meaning, example };
+  });
+}
+
+export const FIRST_BANK = parse(firstRows);
+export const RETIRED = retired;
+export const WORDS = [...FIRST_BANK.filter(({ word }) => !retired.has(word)), ...parse(addedRows)];
+
+// Each bank takes over at New York midnight on its date.
+export const BANKS = [
+  { from: '2026-09-23', words: FIRST_BANK },
+  { from: '2026-10-22', words: WORDS },
+];

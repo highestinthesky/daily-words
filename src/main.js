@@ -3,7 +3,7 @@ import '@fontsource-variable/dm-sans/wght.css';
 import { waapi } from 'animejs/waapi';
 import { stagger } from 'animejs/utils';
 import { getDailyEdition, getEditorialDate } from './daily.js';
-import { WORDS } from './words.js';
+import { BANKS } from './words.js';
 import './style.css';
 
 const editionRoot = document.querySelector('#edition');
@@ -54,7 +54,7 @@ function makeCard(entry) {
 }
 
 function renderEdition(dateKey) {
-  const { words } = getDailyEdition(dateKey, WORDS);
+  const { words } = getDailyEdition(dateKey, BANKS);
   const grid = make('section', 'word-grid');
   grid.setAttribute('aria-label', 'More words');
   words.slice(1).forEach((entry) => grid.append(makeCard(entry)));

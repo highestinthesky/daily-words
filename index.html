@@ -5,12 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content="Five sophisticated, useful words for today. A fresh edition every midnight, New York time." />
     <meta name="color-scheme" content="light" />
-    <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+    <link rel="icon" href="./favicon.ico" sizes="48x48" />
+    <link rel="icon" type="image/png" sizes="32x32" href="./favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="./favicon-16x16.png" />
+    <link rel="apple-touch-icon" href="./apple-touch-icon.png" />
+    <link rel="manifest" href="./site.webmanifest" />
     <title>Well Said — Five words for today</title>
   </head>
   <body>
     <header class="masthead" aria-label="Well Said">
       <p class="masthead__brand">well said<span>.</span></p>
+      <nav class="masthead__nav" aria-label="Site">
+        <a class="masthead__link" href="./archive.html">Every word so far</a>
+      </nav>
     </header>
     <main id="edition" class="edition" aria-label="Today's five words" aria-live="polite"></main>
     <noscript>

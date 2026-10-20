@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
-import { getDailyEdition, getEditorialDate, getNewWords } from '../src/daily.js';
-import { WORDS } from '../src/words.js';
+import { getDailyEdition, getEditorialDate, getNewWords, getWordHistory } from '../src/daily.js';
+import { BANKS, FIRST_BANK, WORDS } from '../src/words.js';
 
 const bank = Array.from({ length: 101 }, (_, index) => ({
   word: `word-${index}`,
@@ -8,6 +8,10 @@ const bank = Array.from({ length: 101 }, (_, index) => ({
   meaning: `Meaning ${index}`,
   example: `An example for word-${index}.`,
 }));
+
+function dateAfterLaunch(day) {
+  return new Date(Date.parse('2026-09-23T00:00:00Z') + day * 86_400_000).toISOString().slice(0, 10);
+}
 
 describe('New York editorial date', () => {
   it('changes at New York midnight rather than the visitor’s midnight', () => {
@@ -58,25 +62,72 @@ describe('daily word selection', () => {
     }
     expect(seen.size).toBe(bank.length);
   });
+});
 
-  it('keeps real editions distinct and review words traceable across the first bank cycle', () => {
-    const start = Date.parse('2026-09-23T00:00:00Z');
+describe('switching word banks', () => {
+  const switchDay = Math.round((Date.parse(`${BANKS[1].from}T00:00:00Z`) - Date.parse('2026-09-23T00:00:00Z')) / 86_400_000);
+
+  it('leaves every edition before the switch exactly as it was', () => {
+    for (let day = 0; day < switchDay; day += 1) {
+      const date = dateAfterLaunch(day);
+      expect(getDailyEdition(date, BANKS), date).toEqual(getDailyEdition(date, FIRST_BANK));
+    }
+  });
+
+  it('draws only current words as new once the switch happens', () => {
+    const current = new Set(WORDS.map(({ word }) => word));
+    for (let day = switchDay; day < switchDay + 60; day += 1) {
+      for (const entry of getDailyEdition(dateAfterLaunch(day), BANKS).words) {
+        expect(current.has(entry.word), entry.word).toBe(true);
+      }
+    }
+  });
+
+  it('keeps real editions distinct and review words traceable until every current word has been new', () => {
+    const current = new Set(WORDS.map(({ word }) => word));
     const newlySeen = new Set();
-    const cycleDays = 7 + Math.ceil((WORDS.length - 35) / 4);
-    for (let day = 0; day < cycleDays; day += 1) {
-      const dateKey = new Date(start + day * 86_400_000).toISOString().slice(0, 10);
-      const edition = getDailyEdition(dateKey, WORDS);
+    let currentSeen = 0;
+    const coversCurrent = () => currentSeen === current.size;
+    let day = 0;
+    for (; !coversCurrent(); day += 1) {
+      expect(day, 'days to cover the current bank').toBeLessThan(400);
+      const dateKey = dateAfterLaunch(day);
+      const edition = getDailyEdition(dateKey, BANKS);
       expect(new Set(edition.words.map(({ word }) => word)).size).toBe(5);
       for (const entry of edition.words) {
         if (entry.isReview) {
-          const source = getDailyEdition(entry.reviewedFrom, WORDS);
+          const source = getDailyEdition(entry.reviewedFrom, BANKS);
           expect(source.words.some((candidate) => !candidate.isReview && candidate.word === entry.word)).toBe(true);
-        } else if (newlySeen.size < WORDS.length) {
-          expect(newlySeen.has(entry.word)).toBe(false);
+        } else if (!coversCurrent()) {
+          expect(newlySeen.has(entry.word), `${entry.word} repeated on ${dateKey}`).toBe(false);
           newlySeen.add(entry.word);
+          if (current.has(entry.word)) currentSeen += 1;
         }
       }
     }
-    expect(newlySeen.size).toBe(WORDS.length);
+    expect(day).toBeGreaterThan(switchDay);
+  });
+});
+
+describe('word history', () => {
+  it('lists each shown word once, alphabetized, with every day it appeared', () => {
+    const history = getWordHistory('2026-10-10', bank);
+    const words = history.map(({ word }) => word);
+    expect(words).toEqual([...words].sort((a, b) => a.localeCompare(b)));
+    expect(new Set(words).size).toBe(words.length);
+
+    const appearances = history.flatMap(({ word, appearances }) => appearances.map(({ date, isReview }) => ({ word, date, isReview })));
+    for (let day = 0; day <= 17; day += 1) {
+      const date = dateAfterLaunch(day);
+      for (const entry of getDailyEdition(date, bank).words) {
+        expect(appearances).toContainEqual({ word: entry.word, date, isReview: entry.isReview });
+      }
+    }
+    expect(appearances).toHaveLength(7 * 5 + 11 * 5);
+  });
+
+  it('keeps entry details without per-day review fields', () => {
+    const [entry] = getWordHistory('2026-10-10', bank);
+    expect(Object.keys(entry).sort()).toEqual(['appearances', 'example', 'meaning', 'part', 'word']);
   });
 });
