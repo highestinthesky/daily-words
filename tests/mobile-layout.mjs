@@ -39,11 +39,37 @@ async function assertReadable(page) {
   assert.deepEqual(issues, []);
 }
 
+async function assertArchiveReadable(page) {
+  await page.waitForSelector('.archive-entry');
+  const issues = await page.evaluate(() => {
+    const issues = [];
+    if (document.documentElement.scrollWidth > innerWidth) issues.push('horizontal overflow');
+    if (!document.querySelector('.archive-entry__date--today')) issues.push('today is not marked');
+    for (const element of document.querySelectorAll('.archive__title, .archive-entry__term, .archive-entry__date')) {
+      const rect = element.getBoundingClientRect();
+      if (rect.left < 0 || rect.right > innerWidth + 1) issues.push(`${element.textContent}: clipped`);
+    }
+    return issues;
+  });
+  assert.deepEqual(issues, []);
+}
+
 try {
   for (const [name, engine] of Object.entries({ chromium, webkit })) {
     const browser = await engine.launch();
     try {
       for (const width of [320, 375, 414, 768, 1280]) {
+        const archive = await browser.newPage({ viewport: { width, height: 812 } });
+        try {
+          await archive.clock.install({ time: new Date('2026-10-26T16:00:00Z') });
+          await archive.goto(`${origin}/archive.html`);
+          await archive.evaluate(() => document.fonts.ready);
+          await assertArchiveReadable(archive);
+          console.log(`PASS ${name}: archive ${width}px`);
+        } finally {
+          await archive.close();
+        }
+
         for (const reducedMotion of ['no-preference', 'reduce']) {
           const page = await browser.newPage({ viewport: { width, height: 812 }, reducedMotion });
           try {
